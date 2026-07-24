@@ -19,29 +19,38 @@ export enum CampaignDevices {
   MOBILE = "Mobile Device",
 }
 
-export const createCampaignFormSchema = z
-  .object({
-    name: V.string("Name"),
-    budget: V.string("Budget").regex(/[0-9]*/),
-    startDate: z.date(),
-    endDate: z.date(),
-    publishers: V.array(
-      "Publishers",
-      V.nativeEnum("Publishers", CampaignPublishers),
-    ),
-    demographic: targetDemographySchema,
-    geography: targetGeographySchema,
-    devices: V.array("Devices", V.nativeEnum("Publishers", CampaignDevices)),
-  })
-  .refine((data) => data.endDate > data.startDate, {
+const campaignDateRefine = <T extends { startDate: Date; endDate: Date }>(
+  schema: z.ZodType<T>,
+) =>
+  schema.refine((data) => data.endDate > data.startDate, {
     message: "End date must be on or after start date.",
     path: ["endDate"],
   });
 
+const createCampaignObjectSchema = z.object({
+  name: V.string("Name"),
+  budget: V.string("Budget").regex(/[0-9]*/),
+  startDate: z.date(),
+  endDate: z.date(),
+  publishers: V.array(
+    "Publishers",
+    V.nativeEnum("Publishers", CampaignPublishers),
+  ),
+  demographic: targetDemographySchema,
+  geography: targetGeographySchema,
+  devices: V.array("Devices", V.nativeEnum("Publishers", CampaignDevices)),
+});
+
+export const createCampaignFormSchema = campaignDateRefine(
+  createCampaignObjectSchema,
+);
+
 export type CreateCampaignRequest = z.infer<typeof createCampaignFormSchema>;
 
-export const updateCampaignFormSchema = createCampaignFormSchema.extend({
-  id: V.string("Id"),
-});
+export const updateCampaignFormSchema = campaignDateRefine(
+  createCampaignObjectSchema.extend({
+    id: V.string("Id"),
+  }),
+);
 
 export type UpdateCampaignRequest = z.infer<typeof updateCampaignFormSchema>;

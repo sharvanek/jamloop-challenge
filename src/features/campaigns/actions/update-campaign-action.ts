@@ -3,6 +3,7 @@
 import { FormState } from "@/types/form-state";
 import { mockCampaignService } from "@/lib/mock-campaign-service";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import {
   UpdateCampaignRequest,
   updateCampaignFormSchema,
@@ -18,6 +19,7 @@ export async function updateCampaignAction(
   try {
     const campaign = updateCampaignFormSchema.parse(payload);
     await mockCampaignService.updateCampaign(campaign);
+    revalidatePath("/customer/campaigns");
     redirectUrl = `/customer/campaigns`;
     //eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {

@@ -14,6 +14,8 @@ import Link from "next/link";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import { mockCampaignService } from "@/lib/mock-campaign-service";
 
+export const dynamic = "force-dynamic";
+
 export default async function CampaignsPage() {
   const campaigns = await mockCampaignService.listCampaigns();
 

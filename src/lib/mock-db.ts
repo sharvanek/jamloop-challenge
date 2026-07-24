@@ -197,7 +197,7 @@ export class MockDb {
       setTimeout(() => {
         this.campaignsTable.push({
           ...campaign,
-          id: `${this.campaignsTable.length}`,
+          id: `${this.campaignsTable.length + 1}`,
         });
         resolve();
       }, artificialDelay);
@@ -232,4 +232,11 @@ export class MockDb {
   }
 }
 
-export const mockDb = new MockDb();
+const globalForMockDb = globalThis as typeof globalThis & {
+  mockDb?: MockDb;
+};
+
+// Share one in-memory DB across Server Action and RSC bundles (Next can load
+// this module more than once in dev).
+export const mockDb = globalForMockDb.mockDb ?? new MockDb();
+globalForMockDb.mockDb = mockDb;
