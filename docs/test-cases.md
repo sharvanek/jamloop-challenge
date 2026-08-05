@@ -49,6 +49,25 @@
 
 ---
 
+## LAND-003: Verify User Can Access Campaign Creation From Landing Page
+
+**Priority:** P0  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is on the landing page
+
+### Steps
+1. Click the "Create a campaign" button
+
+### Expected Result
+- User is routed to the campaign creation workflow
+- Campaign creation page loads successfully
+
+--
+
 ## AUTH-001: Verify Login Page Displays Required Elements
 
 **Priority:** P0  
@@ -376,19 +395,893 @@
 
 --
 
-## CAMP-001: Verify User Can Start Create Campaign Workflow
+## CAMP-001: Verify Campaigns Page Displays Required Elements
 
 **Priority:** P0  
 **Type:** Functional  
 **Layer:** UI  
 **Automation:** Yes
 
-## Preconditions
-- User is on the landing page
+### Preconditions
+- User is authenticated
 
-## Steps
-1. Click the "Create a campaign" button
+### Steps
+1. Navigate to `/customer/campaigns`
 
-## Expected Result
-- User is directed to the campaign creation workflow
-- Campaign creation page or authentication flow is displayed
+### Expected Result
+- JamLoop logo is displayed
+- "Campaigns" heading is displayed
+- "Create Campaign" button is displayed
+- Campaign table is displayed
+- Logout button is displayed
+- Copyright text is displayed:
+  - "© 2026 JamLoop LLC. All Rights Reserved."
+
+---
+
+## CAMP-002: Verify User Can View Existing Campaigns
+
+**Priority:** P0  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- Campaign data exists
+
+### Steps
+1. Navigate to `/customer/campaigns`
+
+### Expected Result
+- Existing campaigns are displayed
+- Campaign records contain expected campaign information
+
+---
+
+## CAMP-003: Verify User Can Access Create Campaign Workflow
+
+**Priority:** P0  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns`
+
+### Steps
+1. Click the "Create Campaign" button
+
+### Expected Result
+- User is routed to the campaign creation workflow
+- Campaign creation page loads successfully
+
+---
+
+## CAMP-004: Verify User Can Logout From Campaigns Page
+
+**Priority:** P0  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns`
+
+### Steps
+1. Click the "Log Out" button
+
+### Expected Result
+- User session is terminated
+- User is redirected to the login page
+- User can no longer access protected campaign pages
+
+---
+
+## CAMP-005: Verify Campaign Table Displays Correct Column Headers
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns`
+
+### Steps
+1. Navigate to the campaigns page
+
+### Expected Result
+Campaign table displays the following columns:
+
+- Name
+- Start Date
+- End Date
+- Country
+- Publishers
+- Devices
+
+---
+
+## CAMP-006: Verify Campaign Names Are Clickable
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- Campaigns exist
+
+### Steps
+1. Navigate to `/customer/campaigns`
+2. Click an existing campaign name
+
+### Expected Result
+- User is routed to the campaign details page
+- Campaign details load successfully
+
+---
+
+## CAMP-007: Verify Multiple Campaigns Are Displayed
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- Multiple campaigns exist
+
+### Steps
+1. Navigate to `/customer/campaigns`
+
+### Expected Result
+- Multiple campaign records are displayed
+- Each campaign appears as a separate row
+
+---
+
+## CAMP-008: Verify Campaign Data Displays Expected Values
+
+**Priority:** P1  
+**Type:** Validation  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- Campaign records exist
+
+### Steps
+1. Navigate to `/customer/campaigns`
+2. Review campaign records
+
+### Expected Result
+- Campaign name displays correctly
+- Start date displays correctly
+- End date displays correctly
+- Country displays correctly
+- Publishers display correctly
+- Devices display correctly
+
+---
+
+## CAMP-009: Verify Empty Campaign State Is Handled Correctly
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User has no campaigns
+
+### Steps
+1. Navigate to `/customer/campaigns`
+
+### Expected Result
+- Empty state is displayed
+- User receives appropriate messaging
+- User can still access campaign creation workflow
+
+---
+
+## CAMP-010: Verify Campaign Page Requires Authentication
+
+**Priority:** P0  
+**Type:** Security  
+**Layer:** UI/API  
+**Automation:** Yes
+
+### Steps
+1. Logout from the application
+2. Navigate directly to `/customer/campaigns`
+
+### Expected Result
+- User is redirected to the login page
+- Campaign data is not accessible without authentication
+
+---
+
+## CAMP-011: Verify Campaign Page Remains Accessible After Refresh
+
+**Priority:** P2  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+
+### Steps
+1. Navigate to `/customer/campaigns`
+2. Refresh the browser
+
+### Expected Result
+- User remains authenticated
+- Campaign table loads successfully
+
+---
+
+## CAMP-012: Verify Create Campaign Page Displays Required Elements
+
+**Priority:** P0  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+
+### Steps
+1. Navigate to `/customer/campaigns/create`
+
+### Expected Result
+- JamLoop logo is displayed
+- "Create a new campaign" heading is displayed
+- Campaign description is displayed
+- "Campaign Details" section is displayed
+- Create Campaign button is displayed
+- Logout button is displayed
+- Copyright text is displayed:
+  - "© 2026 JamLoop LLC. All Rights Reserved."
+
+---
+
+## CAMP-013: Verify Create Campaign Form Displays All Available Fields
+
+**Priority:** P0  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns/create`
+
+### Steps
+1. Review the campaign creation form
+
+### Expected Result
+The following fields are displayed:
+
+- Campaign Name
+- Budget Goal
+- Start Date
+- End Date
+- Publishers
+- Devices
+- Gender
+- Ages
+- Country
+- State
+- City
+- Zip Code
+
+---
+
+## CAMP-014: Verify User Can Create Campaign With Valid Data
+
+**Priority:** P0  
+**Type:** Functional  
+**Layer:** UI/API  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns/create`
+
+### Test Data
+- Valid campaign name
+- Valid budget amount
+- Valid start date
+- Valid end date
+- One or more publishers selected
+- One or more devices selected
+- One or more age ranges selected
+- Gender selection (optional)
+- Valid country
+- Valid state
+- Valid city
+- Valid zip code
+
+### Steps
+1. Enter valid campaign information
+2. Click "Create Campaign"
+
+### Expected Result
+- Campaign is created successfully
+- User is routed to `/customer/campaigns`
+- Campaign list page loads successfully
+
+---
+
+## CAMP-015: Verify Required Campaign Fields Are Validated
+
+**Priority:** P0  
+**Type:** Validation  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns/create`
+
+### Steps
+1. Leave required fields empty
+2. Click "Create Campaign"
+
+### Expected Result
+- Campaign creation is prevented
+- Validation messages are displayed for required fields
+
+Required fields include:
+- Campaign Name
+- Budget Goal
+- Start Date
+- End Date
+- Publishers
+- Devices
+- Ages
+- Country
+- State
+- City
+- Zip Code
+
+---
+
+## CAMP-016: Verify Budget Field Accepts Valid Input
+
+**Priority:** P1  
+**Type:** Validation  
+**Layer:** UI  
+**Automation:** Yes
+
+### Steps
+1. Enter a valid numeric budget value
+
+### Expected Result
+- Budget value is accepted
+- No validation error is displayed
+
+---
+
+## CAMP-017: Verify Budget Field Rejects Invalid Input
+
+**Priority:** P1  
+**Type:** Validation  
+**Layer:** UI  
+**Automation:** Yes
+
+### Steps
+1. Enter invalid budget values:
+   - Alphabetic characters
+   - Negative values
+   - Invalid symbols
+
+2. Submit the form
+
+### Expected Result
+- Campaign is not created
+- Budget validation feedback is displayed
+
+---
+
+## CAMP-018: Verify Campaign End Date Cannot Occur Before Start Date
+
+**Priority:** P1  
+**Type:** Validation  
+**Layer:** UI/API  
+**Automation:** Yes
+
+### Steps
+1. Enter a start date
+2. Enter an end date before the start date
+3. Click "Create Campaign"
+
+### Expected Result
+- Campaign creation fails
+- Date validation feedback is displayed
+
+---
+
+## CAMP-019: Verify Devices Field Is Required
+
+**Priority:** P1  
+**Type:** Validation  
+**Layer:** UI  
+**Automation:** Yes
+
+### Steps
+1. Complete all required fields except Devices
+2. Click "Create Campaign"
+
+### Expected Result
+- Campaign is not created
+- Devices field displays validation feedback
+
+---
+
+## CAMP-020: Verify Ages Field Is Required
+
+**Priority:** P1  
+**Type:** Validation  
+**Layer:** UI  
+**Automation:** Yes
+
+### Steps
+1. Complete all required fields except Ages
+2. Click "Create Campaign"
+
+### Expected Result
+- Campaign is not created
+- Ages field displays validation feedback
+
+---
+
+## CAMP-021: Verify Gender Field Is Optional
+
+**Priority:** P1  
+**Type:** Validation  
+**Layer:** UI  
+**Automation:** Yes
+
+### Steps
+1. Complete all required fields
+2. Leave Gender set to the default value "Any"
+3. Click "Create Campaign"
+
+### Expected Result
+- Campaign creation succeeds
+- No validation error is displayed for Gender
+
+---
+
+## CAMP-022: Verify Geography Fields Are Required
+
+**Priority:** P1  
+**Type:** Validation  
+**Layer:** UI  
+**Automation:** Yes
+
+### Steps
+1. Complete all required fields except geography fields:
+   - Country
+   - State
+   - City
+   - Zip Code
+
+2. Click "Create Campaign"
+
+### Expected Result
+- Campaign is not created
+- Missing geography fields display validation feedback
+
+---
+
+## CAMP-023: Verify Newly Created Campaign Appears In Campaign List
+
+**Priority:** P0  
+**Type:** Functional  
+**Layer:** UI/API  
+**Automation:** Yes
+
+### Preconditions
+- User successfully creates a campaign
+
+### Steps
+1. Submit a valid campaign
+2. Navigate to `/customer/campaigns`
+
+### Expected Result
+- Newly created campaign is displayed in the campaign table
+- Campaign details match the submitted values:
+  - Name
+  - Start Date
+  - End Date
+  - Country
+  - Publishers
+  - Devices
+
+--
+
+## CAMP-024: Verify Publisher Dropdown Displays Available Options
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns/create`
+
+### Steps
+1. Click the Publishers dropdown
+
+### Expected Result
+The following publisher options are displayed:
+
+- Hulu
+- Discovery
+- ABC
+- A&E
+- TLC
+- Fox News
+- Fox Sports
+
+--
+
+## CAMP-025: Verify User Can Select One Or More Publishers
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns/create`
+
+### Steps
+1. Open the Publishers dropdown
+2. Select one or more publishers
+
+### Expected Result
+- Selected publishers are displayed in the field
+- User can select multiple publishers
+- Selected values are retained before form submission
+
+--
+
+## CAMP-026: Verify Devices Dropdown Displays Available Options
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Steps
+1. Click the Devices dropdown
+
+### Expected Result
+The following device options are displayed:
+
+- CTV
+- Web Browser
+- Mobile Device
+
+--
+
+## CAMP-027: Verify User Can Select One Or More Devices
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns/create`
+
+### Steps
+1. Open the Devices dropdown
+2. Select one or more devices
+
+### Expected Result
+- Selected devices are displayed in the field
+- User can select multiple devices
+- Selected values are retained before form submission
+
+--
+
+## CAMP-028: Verify Ages Dropdown Displays Available Options
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Steps
+1. Click the Ages dropdown
+
+### Expected Result
+The following age ranges are displayed:
+
+- < 5 yrs
+- 6 yrs - 12 yrs
+- 13 yrs - 19 yrs
+- 20 yrs - 35 yrs
+- 36 yrs - 50 yrs
+- 51+ yrs
+
+--
+
+## CAMP-029: Verify User Can Select One Or More Age Ranges
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns/create`
+
+### Steps
+1. Open the Ages dropdown
+2. Select one or more age ranges
+
+### Expected Result
+- Selected age ranges are displayed in the field
+- User can select multiple age ranges
+- Selected values are retained before form submission
+
+--
+
+## CAMP-030: Verify Gender Dropdown Displays Available Options
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns/create`
+
+### Steps
+1. Click the Gender dropdown
+
+### Expected Result
+The following gender options are displayed:
+
+- Any
+- Male
+- Female
+
+--
+
+## CAMP-031: Verify User Can Select Gender Option
+
+**Priority:** P2  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns/create`
+
+### Steps
+1. Open the Gender dropdown
+2. Select a gender option
+
+### Expected Result
+- Selected gender is displayed in the field
+- Selected value is retained before form submission
+
+--
+
+## CAMP-032: Verify Campaign Creation Returns User To Campaign List
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns/create`
+
+### Steps
+1. Complete the campaign form with valid data
+2. Click "Create Campaign"
+
+### Expected Result
+- User is redirected to `/customer/campaigns`
+- Campaign list is displayed
+- User does not remain on the creation page
+
+--
+
+# Campaign Details Tests
+
+---
+
+## CAMP-033: Verify User Can Navigate To Edit Campaign Page
+
+**Priority:** P0  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns`
+- At least one campaign exists
+
+### Steps
+1. Click an existing campaign from the campaign list
+
+### Expected Result
+- User is routed to `/customer/campaigns/{id}`
+- Edit campaign page is displayed
+- Page heading displays "Edit campaign"
+
+--
+
+## CAMP-034: Verify Existing Campaign Data Is Pre-Populated
+
+**Priority:** P0  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns/{id}`
+
+### Steps
+1. Navigate to an existing campaign edit page
+
+### Expected Result
+The following fields contain existing campaign values:
+
+- Campaign name
+- Budget
+- Start date
+- End date
+- Publishers
+- Devices
+- Gender
+- Ages
+- Country
+- State
+- City
+- Zip Code
+
+--
+
+## CAMP-035: Verify User Can Update Campaign Name
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI/API  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is on `/customer/campaigns/{id}`
+
+### Steps
+1. Update the campaign name
+2. Submit changes
+
+### Expected Result
+- Campaign is updated successfully
+- Updated name is saved
+- User remains on or is redirected appropriately
+- Updated value appears in campaign list
+
+--
+
+## CAMP-036: Verify User Can Update Campaign Geography
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI/API  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is editing an existing campaign
+
+### Steps
+1. Modify geography fields:
+   - Country
+   - State
+   - City
+   - Zip Code
+2. Save changes
+
+### Expected Result
+- Geography changes are saved
+- Updated values persist after navigating away and returning
+
+--
+
+## CAMP-037: Verify Required Fields Are Validated During Campaign Update
+
+**Priority:** P0  
+**Type:** Validation  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is editing an existing campaign
+
+### Steps
+1. Remove required field values:
+   - Name
+   - Budget
+   - Publishers
+   - Devices
+   - Ages
+   - Country
+   - State
+   - City
+   - Zip Code
+2. Attempt to save changes
+
+### Expected Result
+- Validation errors are displayed
+- Campaign is not updated
+
+--
+
+## CAMP-038: Verify Multi-Select Fields Retain Multiple Values
+
+**Priority:** P1  
+**Type:** Functional  
+**Layer:** UI  
+**Automation:** Yes
+
+### Preconditions
+- User is authenticated
+- User is editing an existing campaign
+
+### Steps
+1. Select multiple values for:
+   - Publishers
+   - Devices
+   - Ages
+2. Save changes
+3. Reopen campaign
+
+### Expected Result
+- Multiple selected values are displayed
+- Previously selected values persist
+
+--
+
+## CAMP-039: Verify Campaign Update Persists After Refresh
+
+**Priority:** P1  
+**Type:** Regression  
+**Layer:** UI/API  
+**Automation:** Yes
+
+### Steps
+1. Modify a campaign field
+2. Save changes
+3. Refresh the page
+
+### Expected Result
+- Updated campaign values remain unchanged
+- No data is lost after refresh
