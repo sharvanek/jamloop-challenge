@@ -907,7 +907,7 @@ Required fields include:
   - Publishers
   - Devices
 
---
+---
 
 ## CAMP-024: Verify Publisher Dropdown Displays Available Options
 
@@ -934,7 +934,7 @@ The following publisher options are displayed:
 - Fox News
 - Fox Sports
 
---
+---
 
 ## CAMP-025: Verify User Can Select One Or More Publishers
 
@@ -956,7 +956,7 @@ The following publisher options are displayed:
 - User can select multiple publishers
 - Selected values are retained before form submission
 
---
+---
 
 ## CAMP-026: Verify Devices Dropdown Displays Available Options
 
@@ -975,7 +975,7 @@ The following device options are displayed:
 - Web Browser
 - Mobile Device
 
---
+---
 
 ## CAMP-027: Verify User Can Select One Or More Devices
 
@@ -997,7 +997,7 @@ The following device options are displayed:
 - User can select multiple devices
 - Selected values are retained before form submission
 
---
+---
 
 ## CAMP-028: Verify Ages Dropdown Displays Available Options
 
@@ -1019,7 +1019,7 @@ The following age ranges are displayed:
 - 36 yrs - 50 yrs
 - 51+ yrs
 
---
+---
 
 ## CAMP-029: Verify User Can Select One Or More Age Ranges
 
@@ -1041,7 +1041,7 @@ The following age ranges are displayed:
 - User can select multiple age ranges
 - Selected values are retained before form submission
 
---
+---
 
 ## CAMP-030: Verify Gender Dropdown Displays Available Options
 
@@ -1064,7 +1064,7 @@ The following gender options are displayed:
 - Male
 - Female
 
---
+---
 
 ## CAMP-031: Verify User Can Select Gender Option
 
@@ -1085,7 +1085,7 @@ The following gender options are displayed:
 - Selected gender is displayed in the field
 - Selected value is retained before form submission
 
---
+---
 
 ## CAMP-032: Verify Campaign Creation Returns User To Campaign List
 
@@ -1106,10 +1106,6 @@ The following gender options are displayed:
 - User is redirected to `/customer/campaigns`
 - Campaign list is displayed
 - User does not remain on the creation page
-
---
-
-# Campaign Details Tests
 
 ---
 
@@ -1133,7 +1129,7 @@ The following gender options are displayed:
 - Edit campaign page is displayed
 - Page heading displays "Edit campaign"
 
---
+---
 
 ## CAMP-034: Verify Existing Campaign Data Is Pre-Populated
 
@@ -1165,7 +1161,7 @@ The following fields contain existing campaign values:
 - City
 - Zip Code
 
---
+---
 
 ## CAMP-035: Verify User Can Update Campaign Name
 
@@ -1188,7 +1184,7 @@ The following fields contain existing campaign values:
 - User remains on or is redirected appropriately
 - Updated value appears in campaign list
 
---
+---
 
 ## CAMP-036: Verify User Can Update Campaign Geography
 
@@ -1213,7 +1209,7 @@ The following fields contain existing campaign values:
 - Geography changes are saved
 - Updated values persist after navigating away and returning
 
---
+---
 
 ## CAMP-037: Verify Required Fields Are Validated During Campaign Update
 
@@ -1243,7 +1239,7 @@ The following fields contain existing campaign values:
 - Validation errors are displayed
 - Campaign is not updated
 
---
+---
 
 ## CAMP-038: Verify Multi-Select Fields Retain Multiple Values
 
@@ -1268,7 +1264,7 @@ The following fields contain existing campaign values:
 - Multiple selected values are displayed
 - Previously selected values persist
 
---
+---
 
 ## CAMP-039: Verify Campaign Update Persists After Refresh
 
