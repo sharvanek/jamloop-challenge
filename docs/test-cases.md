@@ -2,89 +2,89 @@
 
 ## Test Inventory
 
-| ID | Feature | Test Name | Priority | Type | Layer | Automation |
-|----|---------|-----------|:--------:|------|-------|:----------:|
-| LAND-001 | Landing | Verify Landing Page Loads With Required Branding and Content | P0 | Functional | UI | Yes |
-| LAND-002 | Landing | Verify User Can Navigate To Login Page | P0 | Functional | UI | Yes |
-| LAND-003 | Landing | Verify Unauthenticated User Is Redirected To Login When Creating A Campaign | P0 | Functional | UI | Yes |
-| LAND-004 | Landing | Verify Authenticated User Can Access Campaign Creation | P1 | Functional | UI | Yes |
-| AUTH-001 | Authentication | Verify Login Page Displays Required Elements | P0 | Functional | UI | Yes |
-| AUTH-002 | Authentication | Verify User Can Login With Valid Credentials | P0 | Functional | UI/API | Yes |
-| AUTH-003 | Authentication | Verify User Cannot Login With Invalid Credentials | P0 | Negative | UI/API | Yes |
-| AUTH-004 | Authentication | Verify Login Fails When Username Is Empty | P1 | Validation | UI/API | Yes |
-| AUTH-005 | Authentication | Verify Login Fails When Password Is Empty | P1 | Validation | UI/API | Yes |
-| AUTH-006 | Authentication | Verify Login Fails When Username And Password Are Empty | P1 | Validation | UI/API | Yes |
-| AUTH-007 | Authentication | Verify Password Input Is Masked | P1 | Security | UI | Yes |
-| AUTH-008 | Authentication | Verify Forgot Password Link Is Available | P2 | Functional | UI | Yes |
-| AUTH-009 | Authentication | Verify Authenticated User Is Redirected After Login | P0 | Functional | UI | Yes |
-| AUTH-010 | Authentication | Verify Unauthenticated Users Cannot Access Protected Pages | P0 | Security | UI/API | Yes |
-| AUTH-011 | Authentication | Verify User Can Logout Successfully | P0 | Functional | UI/API | Yes |
-| AUTH-012 | Authentication | Verify Session Persists After Page Refresh | P1 | Functional | UI | Yes |
-| AUTH-013 | Authentication | Verify Expired Session Requires Re-authentication | P1 | Security | UI/API | Yes |
-| AUTH-014 | Authentication | Verify Login Handles Server Errors Gracefully | P1 | Negative | API/UI | Yes |
-| AUTH-015 | Authentication | Verify Login Handles Network Failures Gracefully | P2 | Negative | API/UI | Yes |
-| AUTH-016 | Authentication | Verify Login Button Is Disabled Until Required Fields Are Entered | P1 | Validation | UI | Yes |
-| AUTH-017 | Authentication | Verify User Receives Error After Multiple Failed Login Attempts | P1 | Security | UI/API | Yes |
-| AUTH-018 | Authentication | Verify User Cannot Access Login Page After Authentication | P1 | Security | UI | Yes |
-| AUTH-019 | Authentication | Verify Logout Invalidates Browser Session | P1 | Security | UI | Yes |
-| CAMP-001 | Campaigns | Verify Campaigns Page Displays Required Elements | P0 | Functional | UI | Yes |
-| CAMP-002 | Campaigns | Verify User Can View Existing Campaigns | P0 | Functional | UI | Yes |
-| CAMP-003 | Campaigns | Verify User Can Access Create Campaign Workflow | P0 | Functional | UI | Yes |
-| CAMP-004 | Campaigns | Verify User Can Logout From Campaigns Page | P0 | Functional | UI | Yes |
-| CAMP-005 | Campaigns | Verify Campaign Table Displays Correct Column Headers | P1 | Functional | UI | Yes |
-| CAMP-006 | Campaigns | Verify Campaign Names Are Clickable | P1 | Functional | UI | Yes |
-| CAMP-007 | Campaigns | Verify Multiple Campaigns Are Displayed | P1 | Functional | UI | Yes |
-| CAMP-008 | Campaigns | Verify Campaign Data Displays Expected Values | P1 | Validation | UI | Yes |
-| CAMP-009 | Campaigns | Verify Empty Campaign State Is Handled Correctly | P1 | Functional | UI | Yes |
-| CAMP-010 | Campaigns | Verify Campaign Page Requires Authentication | P0 | Security | UI/API | Yes |
-| CAMP-011 | Campaigns | Verify Campaign Page Remains Accessible After Refresh | P2 | Functional | UI | Yes |
-| CAMP-012 | Campaigns | Verify Create Campaign Page Displays Required Elements | P0 | Functional | UI | Yes |
-| CAMP-013 | Campaigns | Verify Create Campaign Form Displays All Available Fields | P0 | Functional | UI | Yes |
-| CAMP-014 | Campaigns | Verify User Can Create Campaign With Valid Data | P0 | Functional | UI/API | Yes |
-| CAMP-015 | Campaigns | Verify Required Campaign Fields Are Validated | P0 | Validation | UI | Yes |
-| CAMP-016 | Campaigns | Verify Budget Field Accepts Valid Input | P1 | Validation | UI | Yes |
-| CAMP-017 | Campaigns | Verify Budget Field Rejects Invalid Input | P1 | Validation | UI | Yes |
-| CAMP-018 | Campaigns | Verify Campaign End Date Cannot Occur Before Start Date | P1 | Validation | UI/API | Yes |
-| CAMP-019 | Campaigns | Verify Devices Field Is Required | P1 | Validation | UI | Yes |
-| CAMP-020 | Campaigns | Verify Ages Field Is Required | P1 | Validation | UI | Yes |
-| CAMP-021 | Campaigns | Verify Gender Field Is Optional | P1 | Validation | UI | Yes |
-| CAMP-022 | Campaigns | Verify Geography Fields Are Required | P1 | Validation | UI | Yes |
-| CAMP-023 | Campaigns | Verify Newly Created Campaign Appears In Campaign List | P0 | Functional | UI/API | Yes |
-| CAMP-024 | Campaigns | Verify Publisher Dropdown Displays Available Options | P1 | Functional | UI | Yes |
-| CAMP-025 | Campaigns | Verify User Can Select One Or More Publishers | P1 | Functional | UI | Yes |
-| CAMP-026 | Campaigns | Verify Devices Dropdown Displays Available Options | P1 | Functional | UI | Yes |
-| CAMP-027 | Campaigns | Verify User Can Select One Or More Devices | P1 | Functional | UI | Yes |
-| CAMP-028 | Campaigns | Verify Ages Dropdown Displays Available Options | P1 | Functional | UI | Yes |
-| CAMP-029 | Campaigns | Verify User Can Select One Or More Age Ranges | P1 | Functional | UI | Yes |
-| CAMP-030 | Campaigns | Verify Gender Dropdown Displays Available Options | P1 | Functional | UI | Yes |
-| CAMP-031 | Campaigns | Verify User Can Select Gender Option | P2 | Functional | UI | Yes |
-| CAMP-032 | Campaigns | Verify Campaign Creation Returns User To Campaign List | P1 | Functional | UI | Yes |
-| CAMP-033 | Campaigns | Verify User Can Navigate To Edit Campaign Page | P0 | Functional | UI | Yes |
-| CAMP-034 | Campaigns | Verify Existing Campaign Data Is Pre-Populated | P0 | Functional | UI | Yes |
-| CAMP-035 | Campaigns | Verify User Can Update Campaign Name | P1 | Functional | UI/API | Yes |
-| CAMP-036 | Campaigns | Verify User Can Update Campaign Geography | P1 | Functional | UI/API | Yes |
-| CAMP-037 | Campaigns | Verify Required Fields Are Validated During Campaign Update | P0 | Validation | UI | Yes |
-| CAMP-038 | Campaigns | Verify Multi-Select Fields Retain Multiple Values | P1 | Functional | UI | Yes |
-| CAMP-039 | Campaigns | Verify Campaign Update Persists After Refresh | P1 | Regression | UI/API | Yes |
-| CAMP-040 | Campaigns | Verify Campaign List Loads After Login | P0 | Functional | UI | Yes |
-| CAMP-041 | Campaigns | Verify Campaign List Displays At Least One Campaign | P1 | Functional | UI | Yes |
-| CAMP-042 | Campaigns | Verify Campaign Name Is Required | P1 | Validation | UI | Yes |
-| CAMP-043 | Campaigns | Verify Budget Is Required | P1 | Validation | UI | Yes |
-| CAMP-044 | Campaigns | Verify Publishers Is Required | P1 | Validation | UI | Yes |
-| CAMP-045 | Campaigns | Verify Country Is Required | P1 | Validation | UI | Yes |
-| CAMP-046 | Campaigns | Verify State Is Required | P1 | Validation | UI | Yes |
-| CAMP-047 | Campaigns | Verify City Is Required | P1 | Validation | UI | Yes |
-| CAMP-048 | Campaigns | Verify Zip Code Is Required | P1 | Validation | UI | Yes |
-| CAMP-049 | Campaigns | Verify User Can Update Budget | P1 | Functional | UI/API | Yes |
-| CAMP-050 | Campaigns | Verify User Can Update Publishers | P1 | Functional | UI/API | Yes |
-| CAMP-051 | Campaigns | Verify User Can Update Devices | P1 | Functional | UI/API | Yes |
-| CAMP-052 | Campaigns | Verify User Can Update Ages | P1 | Functional | UI/API | Yes |
-| CAMP-053 | Campaigns | Verify User Can Update Gender | P1 | Functional | UI/API | Yes |
-| CAMP-054 | Campaigns | Verify User Can Update Dates | P1 | Functional | UI/API | Yes |
-| CAMP-055 | Campaigns | Verify Updated Campaign Appears In Campaign List | P0 | Regression | UI/API | Yes |
-| CAMP-056 | Campaigns | Verify User Cannot Access Edit Page When Logged Out | P0 | Security | UI/API | Yes |
-| CAMP-057 | Campaigns | Verify Invalid Campaign ID Is Handled Gracefully | P2 | Negative | UI/API | Yes |
-| CAMP-058 | Campaigns | Verify Non-Numeric Campaign ID Is Handled Gracefully | P2 | Negative | UI/API | Yes |
+| ID | Test Case | Priority | Type | Layer | Automation Status |
+|---|---|---|---|---|---|
+| LAND-001 | Verify Landing Page Loads With Required Branding and Content | P0 | Functional | UI | Yes |
+| LAND-002 | Verify User Can Navigate To Login Page | P0 | Functional | UI | Yes |
+| LAND-003 | Verify Unauthenticated User Is Redirected To Login When Creating A Campaign | P0 | Functional | UI | Yes |
+| LAND-004 | Verify Authenticated User Can Access Campaign Creation | P1 | Functional | UI | Yes |
+| AUTH-001 | Verify Login Page Displays Required Elements | P0 | Functional | UI | Yes |
+| AUTH-002 | Verify User Can Login With Valid Credentials | P0 | Functional | UI/API | Yes |
+| AUTH-003 | Verify User Cannot Login With Invalid Credentials | P0 | Negative | UI/API | Yes |
+| AUTH-004 | Verify Login Fails When Username Is Empty | P1 | Validation | UI/API | Future |
+| AUTH-005 | Verify Login Fails When Password Is Empty | P1 | Validation | UI/API | Future |
+| AUTH-006 | Verify Login Fails When Username And Password Are Empty | P1 | Validation | UI/API | Future |
+| AUTH-007 | Verify Password Input Is Masked | P1 | Security | UI | Future |
+| AUTH-008 | Verify Forgot Password Link Is Available | P2 | Functional | UI | No |
+| AUTH-009 | Verify Authenticated User Is Redirected After Login | P0 | Functional | UI | Yes |
+| AUTH-010 | Verify Unauthenticated Users Cannot Access Protected Pages | P0 | Security | UI/API | Yes |
+| AUTH-011 | Verify User Can Logout Successfully | P0 | Functional | UI/API | Yes |
+| AUTH-012 | Verify Session Persists After Page Refresh | P1 | Functional | UI | Future |
+| AUTH-013 | Verify Expired Session Requires Re-authentication | P1 | Security | UI/API | Future |
+| AUTH-014 | Verify Login Handles Server Errors Gracefully | P1 | Negative | API/UI | Future |
+| AUTH-015 | Verify Login Handles Network Failures Gracefully | P2 | Negative | API/UI | Future |
+| AUTH-016 | Verify Login Button Is Disabled Until Required Fields Are Entered | P1 | Validation | UI | Future |
+| AUTH-017 | Verify User Receives Error After Multiple Failed Login Attempts | P1 | Security | UI/API | Future |
+| AUTH-018 | Verify User Cannot Access Login Page After Authentication | P1 | Security | UI | Future |
+| AUTH-019 | Verify Logout Invalidates Browser Session | P1 | Security | UI | Future |
+| CAMP-001 | Verify Campaigns Page Displays Required Elements | P0 | Functional | UI | Yes |
+| CAMP-002 | Verify User Can View Existing Campaigns | P0 | Functional | UI | Yes |
+| CAMP-003 | Verify User Can Access Create Campaign Workflow | P0 | Functional | UI | Yes |
+| CAMP-004 | Verify User Can Logout From Campaigns Page | P0 | Functional | UI | Yes |
+| CAMP-005 | Verify Campaign Table Displays Correct Column Headers | P1 | Functional | UI | Future |
+| CAMP-006 | Verify Campaign Names Are Clickable | P1 | Functional | UI | Future |
+| CAMP-007 | Verify Multiple Campaigns Are Displayed | P1 | Functional | UI | Future |
+| CAMP-008 | Verify Campaign Data Displays Expected Values | P1 | Validation | UI | Future |
+| CAMP-009 | Verify Empty Campaign State Is Handled Correctly | P1 | Functional | UI | Future |
+| CAMP-010 | Verify Campaign Page Requires Authentication | P0 | Security | UI/API | Yes |
+| CAMP-011 | Verify Campaign Page Remains Accessible After Refresh | P2 | Functional | UI | Future |
+| CAMP-012 | Verify Create Campaign Page Displays Required Elements | P0 | Functional | UI | Yes |
+| CAMP-013 | Verify Create Campaign Form Displays All Available Fields | P0 | Functional | UI | Yes |
+| CAMP-014 | Verify User Can Create Campaign With Valid Data | P0 | Functional | UI/API | Yes |
+| CAMP-015 | Verify Required Campaign Fields Are Validated | P0 | Validation | UI | Yes |
+| CAMP-016 | Verify Budget Field Accepts Valid Input | P1 | Validation | UI | Future |
+| CAMP-017 | Verify Budget Field Rejects Invalid Input | P1 | Validation | UI | Future |
+| CAMP-018 | Verify Campaign End Date Cannot Occur Before Start Date | P1 | Validation | UI/API | Future |
+| CAMP-019 | Verify Devices Field Is Required | P1 | Validation | UI | Future |
+| CAMP-020 | Verify Ages Field Is Required | P1 | Validation | UI | Future |
+| CAMP-021 | Verify Gender Field Is Optional | P1 | Validation | UI | Future |
+| CAMP-022 | Verify Geography Fields Are Required | P1 | Validation | UI | Future |
+| CAMP-023 | Verify Newly Created Campaign Appears In Campaign List | P0 | Functional | UI/API | Yes |
+| CAMP-024 | Verify Publisher Dropdown Displays Available Options | P1 | Functional | UI | Future |
+| CAMP-025 | Verify User Can Select One Or More Publishers | P1 | Functional | UI | Future |
+| CAMP-026 | Verify Devices Dropdown Displays Available Options | P1 | Functional | UI | Future |
+| CAMP-027 | Verify User Can Select One Or More Devices | P1 | Functional | UI | Future |
+| CAMP-028 | Verify Ages Dropdown Displays Available Options | P1 | Functional | UI | Future |
+| CAMP-029 | Verify User Can Select One Or More Age Ranges | P1 | Functional | UI | Future |
+| CAMP-030 | Verify Gender Dropdown Displays Available Options | P1 | Functional | UI | Future |
+| CAMP-031 | Verify User Can Select Gender Option | P2 | Functional | UI | Future |
+| CAMP-032 | Verify Campaign Creation Returns User To Campaign List | P1 | Functional | UI | Yes |
+| CAMP-033 | Verify User Can Navigate To Edit Campaign Page | P0 | Functional | UI | Future |
+| CAMP-034 | Verify Existing Campaign Data Is Pre-Populated | P0 | Functional | UI | Future |
+| CAMP-035 | Verify User Can Update Campaign Name | P1 | Functional | UI/API | Future |
+| CAMP-036 | Verify User Can Update Campaign Geography | P1 | Functional | UI/API | Future |
+| CAMP-037 | Verify Required Fields Are Validated During Campaign Update | P0 | Validation | UI | Future |
+| CAMP-038 | Verify Multi-Select Fields Retain Multiple Values | P1 | Functional | UI | Future |
+| CAMP-039 | Verify Campaign Update Persists After Refresh | P1 | Regression | UI/API | Future |
+| CAMP-040 | Verify Campaign List Loads After Login | P0 | Functional | UI | Yes |
+| CAMP-041 | Verify Campaign List Displays At Least One Campaign | P1 | Functional | UI | Future |
+| CAMP-042 | Verify Campaign Name Is Required | P1 | Validation | UI | Future |
+| CAMP-043 | Verify Budget Is Required | P1 | Validation | UI | Future |
+| CAMP-044 | Verify Publishers Is Required | P1 | Validation | UI | Future |
+| CAMP-045 | Verify Country Is Required | P1 | Validation | UI | Future |
+| CAMP-046 | Verify State Is Required | P1 | Validation | UI | Future |
+| CAMP-047 | Verify City Is Required | P1 | Validation | UI | Future |
+| CAMP-048 | Verify Zip Code Is Required | P1 | Validation | UI | Future |
+| CAMP-049 | Verify User Can Update Budget | P1 | Functional | UI/API | Future |
+| CAMP-050 | Verify User Can Update Publishers | P1 | Functional | UI/API | Future |
+| CAMP-051 | Verify User Can Update Devices | P1 | Functional | UI/API | Future |
+| CAMP-052 | Verify User Can Update Ages | P1 | Functional | UI/API | Future |
+| CAMP-053 | Verify User Can Update Gender | P1 | Functional | UI/API | Future |
+| CAMP-054 | Verify User Can Update Dates | P1 | Functional | UI/API | Future |
+| CAMP-055 | Verify Updated Campaign Appears In Campaign List | P0 | Regression | UI/API | Future |
+| CAMP-056 | Verify User Cannot Access Edit Page When Logged Out | P0 | Security | UI/API | Future |
+| CAMP-057 | Verify Invalid Campaign ID Is Handled Gracefully | P2 | Negative | UI/API | Future |
+| CAMP-058 | Verify Non-Numeric Campaign ID Is Handled Gracefully | P2 | Negative | UI/API | Future |
 
 ---
 
