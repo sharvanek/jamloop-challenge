@@ -77,7 +77,7 @@ The complete test scenarios are documented in:
 | AUTH-016 | Verify Login Button Is Disabled Until Required Fields Are Entered | P1 | Pass | FINDING-003: Sign In Button Remains Enabled With Missing Required Fields |
 | AUTH-017 | Verify User Receives Error After Multiple Failed Login Attempts | P1 | Not Tested | Requires account security rules |
 | AUTH-018 | Verify User Cannot Access Login Page After Authentication | P1 | FAIL | Authenticated users are able to access the login page even though an active session exists. The application should prevent authenticated users from viewing the login page and redirect them back to the authenticated area. |
-| AUTH-019 | Verify Logout Invalidates Browser Session | P1 |  | |
+| AUTH-019 | Verify Logout Invalidates Browser Session | P1 | Pass | Logout successfully invalidates access to previously visited protected pages. Browser navigation does not expose cached authenticated content after logout. |
 
 ---
 
@@ -85,19 +85,19 @@ The complete test scenarios are documented in:
 
 | Test ID | Test Name | Priority | Result | Notes |
 |---|---|---|---|---|
-| CAMP-001 | Verify Campaigns Page Displays Required Elements | P0 |  | |
-| CAMP-002 | Verify User Can View Existing Campaigns | P0 |  | |
-| CAMP-003 | Verify User Can Access Create Campaign Workflow | P0 |  | |
-| CAMP-004 | Verify User Can Logout From Campaigns Page | P0 |  | |
-| CAMP-005 | Verify Campaign Table Displays Correct Column Headers | P1 |  | |
-| CAMP-006 | Verify Campaign Names Are Clickable | P1 |  | |
-| CAMP-007 | Verify Multiple Campaigns Are Displayed | P1 |  | |
-| CAMP-008 | Verify Campaign Data Displays Expected Values | P1 |  | |
+| CAMP-001 | Verify Campaigns Page Displays Required Elements | P0 | Pass | Campaign dashboard loads successfully with expected branding, navigation controls, campaign management messaging, and available campaign actions. |
+| CAMP-002 | Verify User Can View Existing Campaigns | P0 | Pass | Campaign list successfully displays existing campaign records for the authenticated user. |
+| CAMP-003 | Verify User Can Access Create Campaign Workflow | P0 | Pass | The Create Campaign button successfully routes authenticated users to the campaign creation workflow. |
+| CAMP-004 | Verify User Can Logout From Campaigns Page | P0 | Fail | Finding-005: Logout functionality successfully terminates the user session; however, the campaign creation route does not enforce authentication after logout. This allows unauthenticated users to access a protected workflow.|
+| CAMP-005 | Verify Campaign Table Displays Correct Column Headers | P1 | Pass | |
+| CAMP-006 | Verify Campaign Names Are Clickable | P1 | Pass | Clicking an existing campaign name navigates the user to the campaign edit workflow. |
+| CAMP-007 | Verify Multiple Campaigns Are Displayed | P1 | Pass | |
+| CAMP-008 | Verify Campaign Data Displays Expected Values | P1 | Pass | |
 | CAMP-009 | Verify Empty Campaign State Is Handled Correctly | P1 | Not Tested | Requires empty account |
-| CAMP-010 | Verify Campaign Page Requires Authentication | P0 |  | |
-| CAMP-011 | Verify Campaign Page Remains Accessible After Refresh | P2 |  | |
-| CAMP-012 | Verify Create Campaign Page Displays Required Elements | P0 |  | |
-| CAMP-013 | Verify Create Campaign Form Displays All Available Fields | P0 |  | |
+| CAMP-010 | Verify Campaign Pages Require Authentication | P0 | Fail | Finding-005: The campaigns list route is protected, but the campaign creation route does not appear to enforce authentication. Additional route protection is needed to ensure all campaign workflows require an authenticated session.|
+| CAMP-011 | Verify Campaign Page Remains Accessible After Refresh | P2 | Pass | |
+| CAMP-012 | Verify Create Campaign Page Displays Required Elements | P0 | Pass | |
+| CAMP-013 | Verify Create Campaign Form Displays All Available Fields | P0 | Pass | |
 | CAMP-014 | Verify User Can Create Campaign With Valid Data | P0 |  | |
 | CAMP-015 | Verify Required Campaign Fields Are Validated | P0 |  | |
 | CAMP-016 | Verify Budget Field Accepts Valid Input | P1 |  | |
