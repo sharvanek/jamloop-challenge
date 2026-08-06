@@ -601,23 +601,32 @@
 
 ---
 
-### CAMP-002: Verify User Can View Existing Campaigns
+## CAMP-002: Verify User Can View Existing Campaigns
 
 **Priority:** P0  
 **Type:** Functional  
 **Layer:** UI  
-**Automation:** Yes
+**Automation:** Yes  
 
 ### Preconditions
 - User is authenticated
-- Campaign data exists
+- Existing campaign data exists
 
 ### Steps
-1. Navigate to `/customer/campaigns`
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns`
+3. Review the campaign table
 
 ### Expected Result
 - Existing campaigns are displayed
-- Campaign records contain expected campaign information
+- Campaign records are displayed as rows in the campaign table
+- Each campaign contains expected information:
+  - Campaign name
+  - Start date
+  - End date
+  - Country
+  - Publishers
+  - Devices
 
 ---
 
