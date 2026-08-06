@@ -338,35 +338,54 @@
 
 ---
 
-### AUTH-009: Verify Authenticated User Is Redirected After Login
+## AUTH-009: Verify Authenticated User Is Redirected After Login
 
 **Priority:** P0  
 **Type:** Functional  
 **Layer:** UI  
 **Automation:** Yes
 
+### Preconditions
+- User account exists
+- User has valid credentials
+- User is on the login page
+
 ### Steps
-1. Login with valid credentials
+1. Navigate to `/login`
+2. Enter a valid username
+3. Enter a valid password
+4. Click the "Sign In" button
 
 ### Expected Result
-- User leaves login page
-- User is redirected to authenticated area
+- User is authenticated successfully
+- User leaves the login page
+- User is redirected to `/customer/campaigns`
+- Campaigns page loads successfully
+- Authenticated navigation elements are displayed
+- User session is created
 
 ---
 
-### AUTH-010: Verify Unauthenticated Users Cannot Access Protected Pages
+## AUTH-010: Verify Unauthenticated Users Cannot Access Protected Pages
 
 **Priority:** P0  
 **Type:** Security  
 **Layer:** UI/API  
 **Automation:** Yes
 
+### Preconditions
+- User is not authenticated
+- Browser session does not contain an active login session
+
 ### Steps
-1. Open protected application URL without authentication
+1. Navigate directly to `/customer/campaigns`
+2. Attempt to access the protected campaigns page without logging in
 
 ### Expected Result
-- User is redirected to login page
-- Protected content is not accessible
+- User is redirected to `/login`
+- Campaign page is not displayed
+- Campaign data is not accessible
+- User must authenticate before accessing protected content
 
 ---
 
