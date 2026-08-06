@@ -107,7 +107,7 @@
 ### Expected Result
 - Page loads successfully
 - JamLoop logo is displayed in the top left
-- Hero headline is displayed:
+- Headline is displayed:
   - "Elevate your brand with Connected TV"
 - Supporting text is displayed:
   - "Join thousands of agencies and brands who trust JamLoop DSP™ to reach their most valuable streaming TV viewers."
