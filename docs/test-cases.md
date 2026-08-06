@@ -343,26 +343,23 @@
 **Priority:** P0  
 **Type:** Functional  
 **Layer:** UI  
-**Automation:** Yes
-
-### Preconditions
-- User account exists
-- User has valid credentials
-- User is on the login page
+**Automation:** Yes  
 
 ### Steps
 1. Navigate to `/login`
-2. Enter a valid username
-3. Enter a valid password
-4. Click the "Sign In" button
+2. Enter valid username
+3. Enter valid password
+4. Click "Sign In"
 
 ### Expected Result
 - User is authenticated successfully
 - User leaves the login page
-- User is redirected to `/customer/campaigns`
-- Campaigns page loads successfully
-- Authenticated navigation elements are displayed
-- User session is created
+- User is redirected to the authenticated application area
+
+### Actual Result
+- User is successfully authenticated
+- User is redirected to:
+  - `/customer/campaigns`
 
 ---
 
@@ -371,29 +368,19 @@
 **Priority:** P0  
 **Type:** Security  
 **Layer:** UI/API  
-**Automation:** Yes
-
-### Preconditions
-- User account exists
-- User has previously authenticated
-- User is logged out
-- No active session exists
+**Automation:** Yes  
 
 ### Steps
-1. Login successfully
-2. Click "Log Out"
-3. Navigate directly to `/customer/campaigns`
+1. Logout from the application
+2. Navigate directly to `/customer/campaigns`
 
 ### Expected Result
-- User is prevented from accessing protected pages
-- User is redirected to a public page
-- Campaign page is not displayed
-- Campaign data is not accessible without authentication
+- User is redirected to the login page
+- Protected campaign content is not accessible
 
 ### Actual Result
-- User is redirected to the landing page
-- Campaign page is not accessible
-- User must authenticate before accessing campaign content
+- User is redirected away from the protected route
+- User cannot access campaign data without authentication
 
 ---
 
@@ -402,23 +389,21 @@
 **Priority:** P0  
 **Type:** Functional  
 **Layer:** UI/API  
-**Automation:** Yes
-
-### Preconditions
-- User is authenticated
+**Automation:** Yes  
 
 ### Steps
-1. Click the "Log Out" button
+1. Login successfully
+2. Click the "Log Out" button
 
 ### Expected Result
 - User session is removed
-- User is redirected away from the authenticated application area
+- User is redirected to the login page
 - Protected pages are no longer accessible
 
 ### Actual Result
-- User is redirected to the landing page
-- Authenticated session is terminated
-- Protected pages require authentication
+- User session is invalidated
+- User is redirected to the landing page (`/`)
+- Protected routes require authentication after logout
 
 ---
 
