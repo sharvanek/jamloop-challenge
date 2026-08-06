@@ -111,7 +111,7 @@ Logout successfully invalidates the session. The issue is primarily related to u
 
 ---
 
-# Finding-005: Campaign Creation Page Accessible Without Authentication
+## Finding-005: Campaign Creation Page Accessible Without Authentication
 
 **Category:** Security / Functional
 
@@ -139,7 +139,7 @@ The application correctly protects the campaigns list page, but the campaign cre
 
 ---
 
-# Finding-006: No Ability to Delete or Archive Campaigns
+## Finding-006: No Ability to Delete or Archive Campaigns
 
 **Category:** Usability / Functional Gap
 
@@ -168,7 +168,7 @@ The absence of campaign lifecycle management does not prevent users from creatin
 
 ---
 
-# Finding-007: Campaign Table Does Not Support Search, Filtering, or Sorting
+## Finding-007: Campaign Table Does Not Support Search, Filtering, or Sorting
 
 **Category:** Usability / Scalability
 
@@ -198,3 +198,190 @@ Medium
 The current implementation supports viewing campaigns with a small number of records, but managing hundreds of campaigns would become inefficient without additional table management capabilities.
 
 ---
+
+## Finding-008: Budget Field Accepts Invalid Values
+
+**Category:** Functional Bug / Validation
+
+**Description**
+The campaign creation form allows invalid budget values, including non-numeric and negative amounts.
+
+**Steps to Reproduce**
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns/create`
+3. Enter a non-numeric value in the Budget field
+4. Submit the campaign form
+5. Repeat using a negative budget value
+
+**Expected Behavior**
+- Budget should only accept valid positive numeric values
+- Invalid values should display validation feedback
+- Campaign creation should be prevented
+
+**Actual Behavior**
+- Non-numeric and negative budget values are accepted
+- No validation error is displayed
+
+**Severity**
+Medium
+
+---
+
+## Finding-009: Validation Errors Do Not Automatically Scroll Into View
+
+**Category:** Usability / Accessibility
+
+**Description**
+When form validation fails, invalid fields are highlighted and error messages are displayed, but the page does not automatically scroll to the location of the invalid field. On longer forms, users may not immediately know which fields require attention.
+
+**Steps to Reproduce**
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns/create`
+3. Enter invalid data that triggers validation errors
+4. Submit the form
+5. Observe the page position after validation occurs
+
+**Expected Behavior**
+- The page should automatically scroll to the first invalid field
+- The invalid field and associated error message should be visible to the user
+
+**Actual Behavior**
+- Validation errors are displayed
+- Invalid fields are highlighted
+- User remains at the current scroll position and may need to manually locate errors
+
+**Severity**
+Low
+
+**Notes**
+This does not prevent campaign creation workflows from functioning, but improving error visibility would make form completion easier, especially on longer forms.
+
+---
+
+## Finding-010: Campaign Dates Shift Forward By One Day
+
+**Category:** Functional Bug / Data Integrity
+
+**Description**
+Campaign start and end dates are saved or displayed one day later than the dates selected by the user during campaign creation.
+
+**Steps to Reproduce**
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns/create`
+3. Create a campaign
+4. Select:
+   - Start Date: 08/07/2026
+   - End Date: 08/14/2026
+5. Submit the campaign
+6. View the created campaign
+
+**Expected Behavior**
+- Start Date should display as 08/07/2026
+- End Date should display as 08/14/2026
+
+**Actual Behavior**
+- Start Date displays as 08/08/2026
+- End Date displays as 08/15/2026
+
+**Severity**
+Medium
+
+**Notes**
+This may indicate a date handling or timezone conversion issue. Incorrect campaign dates could impact campaign scheduling and reporting accuracy.
+
+---
+
+## Finding-011: Campaign Devices Cannot Be Updated
+
+**Category:** Functional Bug
+
+**Description**
+Users are unable to modify the Devices selection for an existing campaign. The campaign edit workflow allows access to the field, but changes are not successfully applied.
+
+**Steps to Reproduce**
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns`
+3. Open an existing campaign
+4. Change the Devices selection
+5. Save the campaign
+6. Reopen the campaign
+
+**Expected Behavior**
+- Updated device selections should be saved and displayed when reopening the campaign
+
+**Actual Behavior**
+- Device changes are not saved
+
+**Severity**
+Medium
+
+**Notes**
+Users can create campaigns with device targeting, but cannot modify device targeting after the campaign has been created.
+
+---
+
+## Finding-012: Campaign Dates Are Swapped After Editing Any Campaign Field
+
+**Category:** Functional Bug / Data Integrity
+
+**Description**
+When editing an existing campaign and saving changes to any field, the campaign start date and end date values are swapped after the update is saved. This issue occurs even when the date fields themselves are not modified.
+
+**Steps to Reproduce**
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns`
+3. Open an existing campaign
+4. Modify any campaign field (for example: name, budget, publisher, or device)
+5. Save the campaign
+6. Review the saved campaign dates
+
+**Expected Behavior**
+- Only the modified field(s) should be updated
+- Campaign start date should remain unchanged
+- Campaign end date should remain unchanged
+
+**Actual Behavior**
+- Campaign update completes
+- Start date and end date values are swapped after saving
+- Date values are modified even though the date fields were not changed
+
+**Severity**
+High
+
+**Notes**
+This issue affects campaign data integrity because unrelated edits can unintentionally modify campaign scheduling dates. Users may unknowingly save campaigns with incorrect active periods.
+
+---
+
+## Finding-013: Location Fields Allow Inconsistent Data Entry
+
+**Category:** Usability Issue / Data Quality Risk
+
+**Description**
+The campaign creation form uses free-text inputs for Country, State, City, and Zip Code. This approach may allow inconsistent location data entry and increase the likelihood of invalid or duplicate location values.
+
+**Steps to Reproduce**
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns/create`
+3. Enter location information:
+   - Country
+   - State
+   - City
+   - Zip Code
+4. Observe the available input options
+
+**Expected Behavior**
+- Location fields should provide controls that help users enter consistent location data.
+- Country, State, and City could use controlled selections (such as dropdowns/autocomplete fields).
+- Zip Code entry could validate the format and populate related location fields where possible.
+
+**Actual Behavior**
+- Country, State, City, and Zip Code are free-text fields.
+- Users must manually enter location information.
+- No automatic validation or location lookup occurs.
+
+**Severity**
+Low
+
+**Notes**
+As campaign volume grows, free-text location fields may lead to inconsistent values, making campaign targeting, filtering, and reporting more difficult. Consider using structured location inputs or address lookup functionality to improve data consistency.
