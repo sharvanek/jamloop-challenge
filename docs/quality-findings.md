@@ -458,25 +458,27 @@ This may create confusion for first-time users. Adding registration guidance, ac
 **Category:** Usability Issue / Branding Consistency
 
 **Description**
-The application being tested does not appear to use the same branding, visual identity, or design elements as the public JamLoop website. The differences may create confusion for users transitioning between the public website and the application.
+The application does not appear to use the same visual branding as the public JamLoop website. The logo and color scheme differ, which may create confusion for users transitioning between the public website and the application.
 
 **Steps to Reproduce**
 1. Navigate to the JamLoop public website:
    - https://jamloop.com/
-2. Observe the branding, logo, colors, and overall design
+2. Observe the website branding:
+   - Logo
+   - Color scheme
 3. Navigate to the application
-4. Compare the branding and visual elements
+4. Compare the branding elements
 
 **Expected Behavior**
-- Application branding should be consistent with the JamLoop public website
-- Logo, colors, typography, and visual identity should provide a consistent user experience
+- Application branding should be consistent with the JamLoop website
+- Logo and primary colors should match the established brand identity
 
 **Actual Behavior**
-- Application branding differs from the public JamLoop website
-- Users may perceive the application as a separate or unrelated product
+- Application uses a different logo
+- Application uses different colors from the public JamLoop website
 
 **Severity**
 Low
 
 **Notes**
-Branding inconsistencies may impact user confidence and create confusion during the transition between marketing pages and the authenticated application experience.
+Branding inconsistencies may reduce user confidence and create uncertainty about whether the application is an official JamLoop product. Aligning the application branding with the public website would provide a more consistent user experience.
