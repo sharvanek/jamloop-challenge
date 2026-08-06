@@ -356,11 +356,6 @@
 - User leaves the login page
 - User is redirected to the authenticated application area
 
-### Actual Result
-- User is successfully authenticated
-- User is redirected to:
-  - `/customer/campaigns`
-
 ---
 
 ## AUTH-010: Verify Unauthenticated Users Cannot Access Protected Pages
@@ -377,10 +372,6 @@
 ### Expected Result
 - User is redirected to the login page
 - Protected campaign content is not accessible
-
-### Actual Result
-- User is redirected away from the protected route
-- User cannot access campaign data without authentication
 
 ---
 
@@ -399,11 +390,6 @@
 - User session is removed
 - User is redirected to the login page
 - Protected pages are no longer accessible
-
-### Actual Result
-- User session is invalidated
-- User is redirected to the landing page (`/`)
-- Protected routes require authentication after logout
 
 ---
 
@@ -697,24 +683,26 @@ Campaign table displays the following columns:
 
 ---
 
-### CAMP-006: Verify Campaign Names Are Clickable
+## CAMP-006: Verify Campaign Names Are Clickable
 
 **Priority:** P1  
 **Type:** Functional  
 **Layer:** UI  
-**Automation:** Yes
+**Automation:** Yes  
 
 ### Preconditions
 - User is authenticated
 - Campaigns exist
 
 ### Steps
-1. Navigate to `/customer/campaigns`
-2. Click an existing campaign name
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns`
+3. Click an existing campaign name
 
 ### Expected Result
-- User is routed to the campaign details page
-- Campaign details load successfully
+- User is routed to the campaign edit page
+- Campaign edit form loads successfully
+- Existing campaign data is displayed
 
 ---
 
