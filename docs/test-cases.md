@@ -769,20 +769,22 @@ Campaign table displays the following columns:
 
 ---
 
-### CAMP-010: Verify Campaign Page Requires Authentication
+## CAMP-010: Verify Campaign Pages Require Authentication
 
 **Priority:** P0  
 **Type:** Security  
 **Layer:** UI/API  
-**Automation:** Yes
+**Automation:** Yes  
 
 ### Steps
 1. Logout from the application
-2. Navigate directly to `/customer/campaigns`
+2. Navigate directly to:
+   - `/customer/campaigns`
+   - `/customer/campaigns/create`
 
 ### Expected Result
-- User is redirected to the login page
-- Campaign data is not accessible without authentication
+- Unauthenticated users are redirected to the login page
+- Campaign functionality is not accessible without authentication
 
 ---
 
