@@ -1489,22 +1489,25 @@ The following fields contain existing campaign values:
 
 ---
 
-### CAMP-041: Verify Campaign List Displays At Least One Campaign
+## CAMP-041: Verify Campaign List Displays At Least One Campaign
 
 **Priority:** P1  
 **Type:** Functional  
 **Layer:** UI  
-**Automation:** Yes
+**Automation:** Yes  
 
 ### Preconditions
-- User is logged in
+- User is authenticated
 - Campaign list page is accessible
+- At least one campaign exists for the user
 
 ### Steps
-1. Navigate to campaign list page
+1. Navigate to `/customer/campaigns`
 
 ### Expected Result
+- Campaign table is displayed
 - Campaign table contains one or more campaign records
+- Campaign records are displayed correctly
 
 ---
 
