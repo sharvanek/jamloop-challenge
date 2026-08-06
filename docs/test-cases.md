@@ -808,23 +808,26 @@ Campaign table displays the following columns:
 
 ---
 
-### CAMP-012: Verify Create Campaign Page Displays Required Elements
+## CAMP-012: Verify Create Campaign Page Displays Required Elements
 
 **Priority:** P0  
 **Type:** Functional  
 **Layer:** UI  
-**Automation:** Yes
+**Automation:** Yes  
 
 ### Preconditions
 - User is authenticated
 
 ### Steps
-1. Navigate to `/customer/campaigns/create`
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns/create`
 
 ### Expected Result
 - JamLoop logo is displayed
+- "Campaigns" navigation button is displayed
 - "Create a new campaign" heading is displayed
-- Campaign description is displayed
+- Campaign description text is displayed:
+  - "Name your campaign, set your Budget Goal to align with your financial objectives, and define the start and end dates to control the campaign's duration. Ensure your campaign reaches your target demographic, viewing platform and publishers of choice by choosing from the options below."
 - "Campaign Details" section is displayed
 - Create Campaign button is displayed
 - Logout button is displayed
