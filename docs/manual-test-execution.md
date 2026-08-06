@@ -51,7 +51,7 @@ The complete test scenarios are documented in:
 | LAND-001 | Verify Landing Page Loads With Required Branding and Content | P0 | Pass | |
 | LAND-002 | Verify User Can Navigate To Login Page | P0 | Pass | |
 | LAND-003 | Verify Unauthenticated User Is Redirected To Login When Creating A Campaign | P0 | Pass | |
-| LAND-004 | Verify Authenticated User Can Access Campaign Creation | P1 |  | |
+| LAND-004 | Verify Authenticated User Can Access Campaign Creation | P1 | Pass | |
 
 ---
 
@@ -98,51 +98,51 @@ The complete test scenarios are documented in:
 | CAMP-011 | Verify Campaign Page Remains Accessible After Refresh | P2 | Pass | |
 | CAMP-012 | Verify Create Campaign Page Displays Required Elements | P0 | Pass | |
 | CAMP-013 | Verify Create Campaign Form Displays All Available Fields | P0 | Pass | |
-| CAMP-014 | Verify User Can Create Campaign With Valid Data | P0 |  | |
-| CAMP-015 | Verify Required Campaign Fields Are Validated | P0 |  | |
-| CAMP-016 | Verify Budget Field Accepts Valid Input | P1 |  | |
-| CAMP-017 | Verify Budget Field Rejects Invalid Input | P1 |  | |
-| CAMP-018 | Verify Campaign End Date Cannot Occur Before Start Date | P1 |  | |
-| CAMP-019 | Verify Devices Field Is Required | P1 |  | |
-| CAMP-020 | Verify Ages Field Is Required | P1 |  | |
-| CAMP-021 | Verify Gender Field Is Optional | P1 |  | |
-| CAMP-022 | Verify Geography Fields Are Required | P1 |  | |
-| CAMP-023 | Verify Newly Created Campaign Appears In Campaign List | P0 |  | |
-| CAMP-024 | Verify Publisher Dropdown Displays Available Options | P1 |  | |
-| CAMP-025 | Verify User Can Select One Or More Publishers | P1 |  | |
-| CAMP-026 | Verify Devices Dropdown Displays Available Options | P1 |  | |
-| CAMP-027 | Verify User Can Select One Or More Devices | P1 |  | |
-| CAMP-028 | Verify Ages Dropdown Displays Available Options | P1 |  | |
-| CAMP-029 | Verify User Can Select One Or More Age Ranges | P1 |  | |
-| CAMP-030 | Verify Gender Dropdown Displays Available Options | P1 |  | |
-| CAMP-031 | Verify User Can Select Gender Option | P2 |  | |
-| CAMP-032 | Verify Campaign Creation Returns User To Campaign List | P1 |  | |
-| CAMP-033 | Verify User Can Navigate To Edit Campaign Page | P0 |  | |
-| CAMP-034 | Verify Existing Campaign Data Is Pre-Populated | P0 |  | |
-| CAMP-035 | Verify User Can Update Campaign Name | P1 |  | |
-| CAMP-036 | Verify User Can Update Campaign Geography | P1 |  | |
-| CAMP-037 | Verify Required Fields Are Validated During Campaign Update | P0 |  | |
-| CAMP-038 | Verify Multi-Select Fields Retain Multiple Values | P1 |  | |
-| CAMP-039 | Verify Campaign Update Persists After Refresh | P1 |  | |
-| CAMP-040 | Verify Campaign List Loads After Login | P0 |  | |
-| CAMP-041 | Verify Campaign List Displays At Least One Campaign | P1 |  | |
-| CAMP-042 | Verify Campaign Name Is Required | P1 |  | |
-| CAMP-043 | Verify Budget Is Required | P1 |  | |
-| CAMP-044 | Verify Publishers Is Required | P1 |  | |
-| CAMP-045 | Verify Country Is Required | P1 |  | |
-| CAMP-046 | Verify State Is Required | P1 |  | |
-| CAMP-047 | Verify City Is Required | P1 |  | |
-| CAMP-048 | Verify Zip Code Is Required | P1 |  | |
-| CAMP-049 | Verify User Can Update Budget | P1 |  | |
-| CAMP-050 | Verify User Can Update Publishers | P1 |  | |
-| CAMP-051 | Verify User Can Update Devices | P1 |  | |
-| CAMP-052 | Verify User Can Update Ages | P1 |  | |
-| CAMP-053 | Verify User Can Update Gender | P1 |  | |
-| CAMP-054 | Verify User Can Update Dates | P1 |  | |
-| CAMP-055 | Verify Updated Campaign Appears In Campaign List | P0 |  | |
-| CAMP-056 | Verify User Cannot Access Edit Page When Logged Out | P0 |  | |
-| CAMP-057 | Verify Invalid Campaign ID Is Handled Gracefully | P2 | Not Tested | Requires invalid data setup |
-| CAMP-058 | Verify Non-Numeric Campaign ID Is Handled Gracefully | P2 | Not Tested | Requires URL manipulation |
+| CAMP-014 | Verify User Can Create Campaign With Valid Data | P0 | Pass | |
+| CAMP-015 | Verify Required Campaign Fields Are Validated | P0 | Pass | |
+| CAMP-016 | Verify Budget Field Accepts Valid Input | P1 | Pass | |
+| CAMP-017 | Verify Budget Field Rejects Invalid Input | P1 | Fail | Finding-008: The Budget field does not enforce numeric validation rules. Additional validation is needed to prevent invalid campaign budget values from being submitted. |
+| CAMP-018 | Verify Campaign End Date Cannot Occur Before Start Date | P1 | Pass | The application correctly prevents invalid date ranges and provides clear validation feedback to the user. |
+| CAMP-019 | Verify Devices Field Is Required | P1 | Pass | The application correctly validates that at least one device selection is required before creating a campaign. |
+| CAMP-020 | Verify Ages Field Is Required | P1 | Pass | The application correctly validates that at least one age range selection is required before creating a campaign. |
+| CAMP-021 | Verify Gender Field Is Optional | P1 | Pass | The application correctly treats Gender as an optional campaign targeting field. |
+| CAMP-022 | Verify Geography Fields Are Required | P1 | Pass | |
+| CAMP-023 | Verify Newly Created Campaign Appears In Campaign List | P0 | Fail | Finding-010: Campaign date values are saved/displayed one day later than the values selected during campaign creation. |
+| CAMP-024 | Verify Publisher Dropdown Displays Available Options | P1 | Pass | |
+| CAMP-025 | Verify User Can Select One Or More Publishers | P1 | Pass | |
+| CAMP-026 | Verify Devices Dropdown Displays Available Options | P1 | Pass | |
+| CAMP-027 | Verify User Can Select One Or More Devices | P1 | Pass | |
+| CAMP-028 | Verify Ages Dropdown Displays Available Options | P1 | Pass | |
+| CAMP-029 | Verify User Can Select One Or More Age Ranges | P1 | Pass | |
+| CAMP-030 | Verify Gender Dropdown Displays Available Options | P1 | Pass | |
+| CAMP-031 | Verify User Can Select Gender Option | P2 | Pass | |
+| CAMP-032 | Verify Campaign Creation Returns User To Campaign List | P1 | Pass | |
+| CAMP-033 | Verify User Can Navigate To Edit Campaign Page | P0 | Pass | Clicking a campaign name successfully navigates the user to the campaign-specific page. |
+| CAMP-034 | Verify Existing Campaign Data Is Pre-Populated | P0 | Pass | |
+| CAMP-035 | Verify User Can Update Campaign Name | P1 | Pass | |
+| CAMP-036 | Verify User Can Update Campaign Geography | P1 | Pass | |
+| CAMP-037 | Verify Required Fields Are Validated During Campaign Update | P0 | Pass | |
+| CAMP-038 | Verify Multi-Select Fields Retain Multiple Values | P1 | Pass | |
+| CAMP-039 | Verify Campaign Update Persists After Refresh | P1 | Pass | |
+| CAMP-040 | Verify Campaign List Loads After Login | P0 | Pass | |
+| CAMP-041 | Verify Campaign List Displays At Least One Campaign | P1 | Pass | |
+| CAMP-042 | Verify Campaign Name Is Required | P1 | Pass | The application correctly validates that Campaign Name is required before creating a campaign. |
+| CAMP-043 | Verify Budget Is Required | P1 | Pass | The application correctly validates that Budget is required before creating a campaign. |
+| CAMP-044 | Verify Publishers Is Required | P1 | Pass | The application correctly validates that at least one publisher selection is required before creating a campaign. |
+| CAMP-045 | Verify Country Is Required | P1 | Pass | The application correctly validates that Country is required before creating a campaign. |
+| CAMP-046 | Verify State Is Required | P1 | Pass | The application correctly validates that State is required before creating a campaign. |
+| CAMP-047 | Verify City Is Required | P1 | Pass | The application correctly validates that City is required before creating a campaign. |
+| CAMP-048 | Verify Zip Code Is Required | P1 | Pass | The application correctly validates that Zip Code is required before creating a campaign. |
+| CAMP-049 | Verify User Can Update Budget | P1 | Fail | Finding-012: Campaign date values are incorrectly modified during any update operation. Users can unintentionally change campaign scheduling dates when making unrelated edits. |
+| CAMP-050 | Verify User Can Update Publishers | P1 | Fail | Finding-012: Campaign date values are incorrectly modified during any update operation. Users can unintentionally change campaign scheduling dates when making unrelated edits. |
+| CAMP-051 | Verify User Can Update Devices | P1 | Fail | Finding-011: The Devices field does not support updating an existing campaign after creation. |
+| CAMP-052 | Verify User Can Update Ages | P1 | Fail | Finding-012: Campaign date values are incorrectly modified during any update operation. Users can unintentionally change campaign scheduling dates when making unrelated edits. |
+| CAMP-053 | Verify User Can Update Gender | P1 | Fail | Finding-012: Campaign date values are incorrectly modified during any update operation. Users can unintentionally change campaign scheduling dates when making unrelated edits. |
+| CAMP-054 | Verify User Can Update Dates | P1 | Fail | Finding-012: Campaign date values are incorrectly modified during any update operation. Users can unintentionally change campaign scheduling dates when making unrelated edits. |
+| CAMP-055 | Verify Updated Campaign Appears In Campaign List | P0 | Fail | Finding-012: Campaign date values are incorrectly modified during any update operation. Users can unintentionally change campaign scheduling dates when making unrelated edits. |
+| CAMP-056 | Verify User Cannot Access Edit Page When Logged Out | P0 | Pass | |
+| CAMP-057 | Verify Invalid Campaign ID Is Handled Gracefully | P2 | Pass | The application correctly handles invalid campaign resources and provides a recovery option. The error page could potentially be improved by offering a more relevant navigation option, such as returning to the Campaigns page. |
+| CAMP-058 | Verify Non-Numeric Campaign ID Is Handled Gracefully | P2 | Pass | The application correctly handles non-numeric campaign IDs without exposing errors or broken content. The recovery option could be improved by directing users back to the Campaigns page instead of the homepage. |
 
 ---
 
