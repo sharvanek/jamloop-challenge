@@ -385,3 +385,98 @@ Low
 
 **Notes**
 As campaign volume grows, free-text location fields may lead to inconsistent values, making campaign targeting, filtering, and reporting more difficult. Consider using structured location inputs or address lookup functionality to improve data consistency.
+
+---
+
+## Finding-014: Create and Edit Campaign Forms Do Not Provide a Cancel Option
+
+**Category:** Usability Issue
+
+**Description**
+The Create Campaign and Edit Campaign forms do not provide a Cancel button or clear way to discard changes and return to the previous page. Users must rely on browser navigation or other navigation elements to leave the form.
+
+**Steps to Reproduce**
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns/create`
+3. Begin entering campaign information
+4. Observe available actions
+5. Navigate to an existing campaign edit page
+6. Modify campaign information
+7. Observe available actions
+
+**Expected Behavior**
+- Forms should provide a Cancel option
+- Cancel should discard unsaved changes
+- User should be returned to the previous page or campaign list
+
+**Actual Behavior**
+- No Cancel button is available
+- Users must manually navigate away from the form
+- Users may be unsure whether changes will be saved or discarded
+
+**Severity**
+Low
+
+**Notes**
+Adding a Cancel action would improve usability by providing users with a clear way to exit forms without accidentally saving changes.
+
+---
+
+## Finding-015: No Clear User Registration or Access Request Path
+
+**Category:** Usability Issue  
+**Area:** Landing Page / Authentication
+
+**Description**
+The application provides users with a Sign In option, but there is no visible Sign Up option or information explaining how new users can obtain access. Users arriving at the landing page or login page may not know how to create an account or request access.
+
+**Steps to Reproduce**
+1. Navigate to the JamLoop landing page
+2. Observe available user actions
+3. Navigate to the login page
+4. Observe available authentication options
+
+**Expected Behavior**
+- New users should have a clear path to create an account, or
+- The application should provide instructions for requesting access if registration is restricted
+
+**Actual Behavior**
+- Landing page directs users toward signing in
+- Login page only provides a Sign In option
+- No Sign Up option or access instructions are provided
+
+**Severity**
+Low
+
+**Notes**
+This may create confusion for first-time users. Adding registration guidance, account request instructions, or contact information would improve the onboarding experience.
+
+---
+
+## Finding-016: Application Branding Does Not Match JamLoop Website
+
+**Category:** Usability Issue / Branding Consistency
+
+**Description**
+The application being tested does not appear to use the same branding, visual identity, or design elements as the public JamLoop website. The differences may create confusion for users transitioning between the public website and the application.
+
+**Steps to Reproduce**
+1. Navigate to the JamLoop public website:
+   - https://jamloop.com/
+2. Observe the branding, logo, colors, and overall design
+3. Navigate to the application
+4. Compare the branding and visual elements
+
+**Expected Behavior**
+- Application branding should be consistent with the JamLoop public website
+- Logo, colors, typography, and visual identity should provide a consistent user experience
+
+**Actual Behavior**
+- Application branding differs from the public JamLoop website
+- Users may perceive the application as a separate or unrelated product
+
+**Severity**
+Low
+
+**Notes**
+Branding inconsistencies may impact user confidence and create confusion during the transition between marketing pages and the authenticated application experience.
