@@ -571,22 +571,28 @@
 
 ## Campaign Tests
 
-### CAMP-001: Verify Campaigns Page Displays Required Elements
+## CAMP-001: Verify Campaigns Page Loads With Required Branding and Content
 
 **Priority:** P0  
 **Type:** Functional  
 **Layer:** UI  
-**Automation:** Yes
+**Automation:** Yes  
 
 ### Preconditions
 - User is authenticated
+- Application is running
 
 ### Steps
-1. Navigate to `/customer/campaigns`
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns`
 
 ### Expected Result
+- Page loads successfully
 - JamLoop logo is displayed
 - "Campaigns" heading is displayed
+- Dashboard description text is displayed:
+  > Welcome to your Advertising Campaign Dashboard! This page is your central hub for managing all your advertising efforts. Here, you can easily view, edit, and optimize your active campaigns in real-time. Take control of your advertising strategy and achieve your business goals with ease—start exploring today!
+- "Campaigns" navigation button is displayed
 - "Create Campaign" button is displayed
 - Campaign table is displayed
 - Logout button is displayed
