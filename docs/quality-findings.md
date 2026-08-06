@@ -108,3 +108,93 @@ Low
 
 **Notes**
 Logout successfully invalidates the session. The issue is primarily related to user flow consistency and may be intentional depending on product requirements.
+
+---
+
+# Finding-005: Campaign Creation Page Accessible Without Authentication
+
+**Category:** Security / Functional
+
+**Description**
+The campaign creation page can be accessed directly without an authenticated session.
+
+**Steps to Reproduce**
+1. Logout from the application
+2. Navigate directly to:
+   - `/customer/campaigns/create`
+
+**Expected Behavior**
+- Unauthenticated users should be redirected to the login page
+- Campaign creation functionality should only be available to authenticated users
+
+**Actual Behavior**
+- Campaign creation page loads successfully without authentication
+- User can access the campaign creation workflow
+
+**Severity**
+High
+
+**Notes**
+The application correctly protects the campaigns list page, but the campaign creation route does not appear to enforce the same authentication requirement. This could allow unauthorized users to access campaign creation functionality.
+
+---
+
+# Finding-006: No Ability to Delete or Archive Campaigns
+
+**Category:** Usability / Functional Gap
+
+**Description**
+Users can create and edit campaigns, but there is no available option to delete, archive, or otherwise manage campaigns after creation. This may make it difficult for users to maintain and organize their campaign list over time.
+
+**Steps to Reproduce**
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns`
+3. Open an existing campaign
+4. Review available campaign actions
+
+**Expected Behavior**
+- Users should have options to manage campaigns after creation
+- Available actions may include deleting a campaign, archiving a campaign, or changing campaign status
+
+**Actual Behavior**
+- Users can view and edit campaigns
+- No delete, archive, or campaign management options are available
+
+**Severity**
+Low
+
+**Notes**
+The absence of campaign lifecycle management does not prevent users from creating or editing campaigns, but it may impact usability and campaign organization as the number of campaigns grows.
+
+---
+
+# Finding-007: Campaign Table Does Not Support Search, Filtering, or Sorting
+
+**Category:** Usability / Scalability
+
+**Description**
+The campaigns table displays campaign records but does not provide functionality to search, filter, or sort campaigns. As the number of campaigns increases, users may have difficulty locating specific campaigns or managing a large campaign portfolio efficiently.
+
+**Steps to Reproduce**
+1. Login with valid credentials
+2. Navigate to `/customer/campaigns`
+3. Review the campaign table controls and available actions
+
+**Expected Behavior**
+- Users should have the ability to search for campaigns by relevant fields (for example, campaign name)
+- Users should be able to filter campaigns by attributes such as date, location, publisher, or status
+- Users should be able to sort campaign results by relevant columns
+
+**Actual Behavior**
+- Campaigns are displayed in a static table
+- No search functionality is available
+- No filtering options are available
+- No sorting options are available
+
+**Severity**
+Medium
+
+**Notes**
+The current implementation supports viewing campaigns with a small number of records, but managing hundreds of campaigns would become inefficient without additional table management capabilities.
+
+---
