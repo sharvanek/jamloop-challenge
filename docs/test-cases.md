@@ -374,35 +374,51 @@
 **Automation:** Yes
 
 ### Preconditions
-- User is not authenticated
-- Browser session does not contain an active login session
+- User account exists
+- User has previously authenticated
+- User is logged out
+- No active session exists
 
 ### Steps
-1. Navigate directly to `/customer/campaigns`
-2. Attempt to access the protected campaigns page without logging in
+1. Login successfully
+2. Click "Log Out"
+3. Navigate directly to `/customer/campaigns`
 
 ### Expected Result
-- User is redirected to `/login`
+- User is prevented from accessing protected pages
+- User is redirected to a public page
 - Campaign page is not displayed
-- Campaign data is not accessible
-- User must authenticate before accessing protected content
+- Campaign data is not accessible without authentication
+
+### Actual Result
+- User is redirected to the landing page
+- Campaign page is not accessible
+- User must authenticate before accessing campaign content
 
 ---
 
-### AUTH-011: Verify User Can Logout Successfully
+## AUTH-011: Verify User Can Logout Successfully
 
 **Priority:** P0  
 **Type:** Functional  
 **Layer:** UI/API  
 **Automation:** Yes
 
+### Preconditions
+- User is authenticated
+
 ### Steps
-1. Login successfully
-2. Click Logout
+1. Click the "Log Out" button
 
 ### Expected Result
 - User session is removed
-- User is redirected to login page
+- User is redirected away from the authenticated application area
+- Protected pages are no longer accessible
+
+### Actual Result
+- User is redirected to the landing page
+- Authenticated session is terminated
+- Protected pages require authentication
 
 ---
 
