@@ -25,7 +25,7 @@ The framework was built using:
 
 ## Prerequisites
 
-Before running the automated tests, ensure the following tools are installed:
+Before running the application or automated tests, ensure the following tools are installed:
 
 - Node.js
 - pnpm 9.15.4
@@ -93,7 +93,7 @@ cd jamloop-challenge
 
 ---
 
-# 3. Install Application Dependencies
+# 3. Install Dependencies
 
 Install all project dependencies:
 
@@ -189,13 +189,21 @@ pnpm exec playwright test tests/ui/campaigns/campaign-create.spec.ts
 
 ---
 
-## View Test Report
+## View Test Results
 
 After running tests, open the Playwright HTML report:
 
 ```bash
 pnpm exec playwright show-report
 ```
+
+The report provides:
+
+- Test execution results
+- Failed test details
+- Screenshots for failures
+- Video recordings for failures
+- Execution traces for debugging
 
 ---
 
@@ -249,7 +257,7 @@ Automated scenarios include:
 - Protected route validation
 - Logout functionality
 
-### Reason Selected
+### Why This Workflow Was Selected
 
 Authentication is a foundational workflow because all protected application functionality depends on successful user access.
 
@@ -264,7 +272,7 @@ Automated scenarios include:
 - Sign in navigation works
 - Create campaign navigation works
 
-### Reason Selected
+### Why This Workflow Was Selected
 
 The landing page represents the initial user entry point and validates that users can successfully begin important workflows.
 
@@ -280,7 +288,7 @@ Automated scenarios include:
 - Required field validation
 - Verifying newly created campaigns appear in the campaign list
 
-### Reason Selected
+### Why This Workflow Was Selected
 
 Campaign creation is a primary business workflow and contains multiple user interactions and validation points.
 
@@ -290,63 +298,106 @@ Campaign creation is a primary business workflow and contains multiple user inte
 
 Additional automation coverage could include:
 
+---
+
 ## Authentication
 
+Additional authentication scenarios:
+
 - Verify authenticated users remain logged in after page refresh
-- Verify session expiration redirects users to login
+- Verify session expiration redirects users back to the login page
 - Verify multiple failed login attempts are handled correctly
 - Verify users cannot access restricted functionality without proper permissions
 - Verify password reset workflow (if implemented)
+- Verify login behavior across different user accounts
+- Verify logout behavior after session timeout
+- Verify authentication state is maintained across supported browsers
 
 ---
 
 ## Landing Page
 
+Additional landing page scenarios:
+
 - Verify all landing page navigation links work correctly
 - Verify landing page content remains consistent after refresh
 - Verify responsive behavior across supported screen sizes
 - Verify external links navigate correctly (if applicable)
+- Verify landing page elements render correctly across supported browsers
+- Verify calls-to-action direct users to the correct workflows
 
 ---
 
 ## Campaign List
+
+Additional campaign list scenarios:
 
 - Verify campaign data remains correct after page refresh
 - Verify campaign data persists after logout and login
 - Verify campaign rows display all expected fields
 - Verify empty campaign states are handled correctly
 - Verify campaign list behavior with multiple campaigns
+- Verify campaign information remains consistent after navigation
+- Verify campaign list displays newly created campaigns after reload
+- Verify campaign data is displayed correctly for different campaign configurations
 
 ---
 
 ## Campaign Creation
 
+Additional campaign creation scenarios:
+
 - Verify campaign creation with different targeting combinations
 - Verify campaign creation with boundary values
 - Verify maximum field length validation
-- Verify invalid budget values
-- Verify invalid date ranges
-- Verify missing required fields
-- Verify invalid geographic information
+- Verify invalid budget values are rejected
+- Verify invalid date ranges are rejected
+- Verify missing required fields display validation messages
+- Verify invalid geographic information is handled correctly
 - Verify campaign creation error handling
+- Verify campaign creation with minimum valid data
+- Verify campaign creation with maximum supported data
+- Verify created campaigns retain all submitted values
+- Verify campaign creation workflow behavior after network failures
 
 ---
 
-## Browser Coverage
+## Browser and Platform Coverage
 
-Execute tests across:
+Additional execution coverage:
 
-- Chromium
-- Firefox
-- WebKit
+- Execute tests across Chromium, Firefox, and WebKit
+- Verify application behavior across supported browser versions
+- Verify responsive behavior across supported screen sizes
+- Verify critical workflows on desktop and mobile viewports
+
+---
+
+## API and Integration Coverage
+
+If backend APIs were available, additional automation could include:
+
+- Verify API responses used by campaign workflows
+- Verify API error handling
+- Verify data consistency between UI and API responses
+- Add API-level validation for faster regression coverage
+
+---
+
+## Accessibility Coverage
+
+Additional accessibility testing could include:
+
+- Verify keyboard navigation support
+- Verify required fields have appropriate labels
+- Verify interactive elements contain accessible names
+- Run automated accessibility checks using tools such as Axe
 
 ---
 
 # Scaling the Test Suite
 
-If the automation suite grew to hundreds of tests, the structure would be organized by:
-
-## Feature Area
+If the automation suite grew to hundreds of tests, the framework would be organized by feature area and test type.
 
 Example:
 
@@ -356,47 +407,28 @@ tests/
 ├── authentication/
 ├── campaigns/
 ├── users/
-└── reporting/
-```
-
----
-
-## Test Layer
-
-Separate tests by purpose:
-
-```
-tests/
+├── reporting/
 │
 ├── ui/
 ├── api/
 ├── integration/
-└── fixtures/
+│
+├── fixtures/
+├── pages/
+├── helpers/
+└── data/
 ```
 
 ---
 
-## Shared Components
+## Test Organization Strategy
 
-Reusable components would remain separated:
+Tests would be separated by:
 
-```
-pages/
-fixtures/
-utils/
-helpers/
-data/
-```
-
----
-
-## Test Metadata
-
-Tests would include metadata such as:
-
-- Priority
 - Feature ownership
-- Regression category
+- Application area
+- Test layer
+- Regression priority
 - Smoke vs regression classification
 
 Example:
@@ -430,7 +462,7 @@ Start Application
 Execute Playwright Tests
             |
             v
-Generate Test Report
+Generate Reports
             |
             v
 Publish Results
@@ -447,6 +479,7 @@ Publish Results
 - Trace collection for debugging
 - Parallel execution
 - Environment configuration
+- Test result publishing
 
 ---
 
@@ -462,17 +495,35 @@ The generated reports provide:
 - Video recordings for failures
 - Execution traces for debugging
 
-For a larger-scale automation suite, integrating **Allure Reporting** would improve visibility and maintainability.
+For a larger-scale automation suite, integrating **Allure Reporting** would improve reporting visibility and maintainability.
 
 Potential benefits of Allure Reporting:
 
 - Historical test execution trends
-- Test categorization by feature or component
-- Step-level test reporting
+- Test categorization by feature
+- Step-level execution reporting
 - Easier failure analysis
-- Better reporting for engineering teams and stakeholders
+- Improved communication with engineering teams and stakeholders
 
-A CI pipeline could publish Allure reports after each execution to provide visibility into automation health and regression trends.
+A CI/CD pipeline could publish Allure reports after each execution to provide visibility into automation health and regression trends.
+
+---
+
+# Test Data Management
+
+Authentication test data is centralized in:
+
+```
+tests/data/users.ts
+```
+
+The test framework keeps credentials separate from test logic to improve maintainability.
+
+For production environments, sensitive credentials should be provided through:
+
+- Environment variables
+- CI/CD secret management
+- Secure credential storage solutions
 
 ---
 
