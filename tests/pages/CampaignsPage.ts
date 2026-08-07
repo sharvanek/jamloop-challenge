@@ -50,9 +50,11 @@ export class CampaignsPage extends BasePage {
    * - Create Campaign action is available
    */
   async verifyLoaded() {
-    await expect(this.page).toHaveURL(/\/customer\/campaigns/);
+    await this.expectUrl('/customer/campaigns');
 
-    await expect(this.createCampaignButton).toBeVisible();
+    await expect(
+      this.createCampaignButton
+    ).toBeVisible();
   }
 
   /**
@@ -62,7 +64,9 @@ export class CampaignsPage extends BasePage {
    * are available to the user.
    */
   async verifyCampaignsDisplayed() {
-    await expect(this.tableRows.first()).toBeVisible();
+    await expect(
+      this.tableRows.first()
+    ).toBeVisible();
   }
 
   /**
@@ -142,7 +146,7 @@ export class CampaignsPage extends BasePage {
    * Centralizes row lookup logic so tests
    * do not directly interact with table selectors.
    */
-  async getCampaignRow(campaignName: string) {
+  getCampaignRow(campaignName: string) {
     return this.tableRows
       .filter({
         hasText: campaignName,
