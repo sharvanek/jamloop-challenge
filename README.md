@@ -397,7 +397,7 @@ Additional accessibility testing could include:
 
 # Scaling the Test Suite
 
-If the automation suite grew to hundreds of tests, the framework would be organized by feature area and test type.
+If the automation suite grew to hundreds of tests, the framework would be organized by feature area, test layer, and execution strategy to maintain scalability and maintainability.
 
 Example:
 
@@ -438,6 +438,64 @@ test.describe('Campaign Creation - Critical', () => {
 
 });
 ```
+
+---
+
+## Test Execution and Parallelization
+
+As the test suite grows, execution time becomes a key consideration. The framework would use parallelization strategies to maintain fast feedback cycles.
+
+Potential improvements:
+
+- Run independent test files in parallel
+- Configure Playwright workers based on available CI resources
+- Separate smoke tests from full regression suites
+- Execute critical tests on every pull request
+- Execute full regression suites on scheduled builds
+- Distribute large test suites across multiple CI agents when required
+
+Example execution strategy:
+
+```
+Pull Request
+      |
+      |
+      ├── Smoke Tests
+      |
+      └── Critical Regression Tests
+
+
+Scheduled Build
+      |
+      |
+      └── Full Regression Suite
+              |
+              ├── Authentication Tests
+              ├── Campaign Tests
+              ├── User Tests
+              └── Reporting Tests
+```
+
+---
+
+## Test Maintenance Strategy
+
+To keep the suite maintainable at scale:
+
+- Continue using Page Object Model patterns for reusable UI interactions
+- Maintain centralized test data and fixtures
+- Avoid duplicate test coverage
+- Review and remove outdated tests regularly
+- Track flaky tests and prioritize stabilization
+- Tag tests by priority and execution purpose
+
+Example classifications:
+
+- Smoke
+- Critical regression
+- Full regression
+- End-to-end
+- Integration
 
 ---
 
