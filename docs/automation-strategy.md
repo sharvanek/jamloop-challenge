@@ -91,8 +91,7 @@ Authentication is a critical application workflow. Any failure can prevent users
 - Verify campaign table displays correctly
 - Verify campaign data is displayed
 - Verify user can access campaign creation workflow
-- Verify campaign list requires authentication
-- Verify campaign list loads after login
+- Verify user can logout from the campaigns page
 
 ### Reason For Selection
 
@@ -104,12 +103,12 @@ Campaign management represents the primary functionality of the application. Ens
 
 ### Automated Coverage
 
-- Verify create campaign page loads
-- Verify required form fields are displayed
-- Verify successful campaign creation
-- Verify required field validation
-- Verify multi-select fields work correctly
+- Verify create campaign page loads successfully
+- Verify required campaign form fields are displayed
+- Verify user can create a campaign with valid data
+- Verify required campaign field validation
 - Verify newly created campaigns appear in the campaign list
+- Verify successful campaign creation returns the user to the campaign list
 
 ### Reason For Selection
 
@@ -117,26 +116,28 @@ Campaign creation is a high-value user workflow. Automating this flow provides c
 
 ---
 
-## 5. Campaign Editing Workflow
+# Tests Not Initially Automated
 
-### Automated Coverage
+Some tests were identified as valuable but were not included in the initial automation scope. These scenarios may require additional application workflows, test data setup, environment configuration, or additional framework development.
+
+---
+
+## Campaign Editing Workflow
+
+The campaign editing workflow was identified as an important area for future automation coverage.
+
+Potential automated tests:
 
 - Verify user can access campaign edit page
 - Verify existing campaign data is populated
 - Verify campaign updates save successfully
-- Verify updated campaigns appear in campaign list
-- Verify validation occurs during updates
+- Verify updated campaigns appear in the campaign list
+- Verify validation occurs during campaign updates
 - Verify authentication requirements for editing campaigns
-
-### Reason For Selection
-
-Editing campaigns is an important customer workflow and introduces risk around data persistence and updates.
 
 ---
 
-# Tests Not Initially Automated
-
-Some tests are intentionally marked as future automation because they provide lower value compared to core workflows or require additional setup.
+## Additional Future Automation
 
 Examples:
 
@@ -144,48 +145,18 @@ Examples:
 - Server error simulations
 - Session expiration testing
 - Advanced security scenarios
-- Invalid URL edge cases
+- Invalid URL and routing edge cases
+- Permission-based access scenarios
+- API test coverage
+- Accessibility testing
+- Visual regression testing
+- Cross-browser testing
+- Mobile viewport testing
+- Performance monitoring
+- Security-focused automation
+- Expanded negative test coverage
 
-These tests can be automated as the test framework matures.
-
----
-
-# Test Organization Strategy
-
-If the test suite grows to hundreds of tests, the structure should separate tests by application area and functionality.
-
-Example:
-```text
-tests/
-│
-├── ui/
-│   ├── landing/
-│   │   └── landing.spec.ts
-│   │
-│   ├── auth/
-│   │   ├── login.spec.ts
-│   │   └── logout.spec.ts
-│   │
-│   └── campaigns/
-│       ├── campaign-list.spec.ts
-│       ├── campaign-create.spec.ts
-│       └── campaign-edit.spec.ts
-│
-├── api/
-│   ├── auth/
-│   └── campaigns/
-│
-├── fixtures/
-│
-├── data/
-│
-└── pages/
-    ├── LoginPage.ts
-    ├── CampaignPage.ts
-    └── CreateCampaignPage.ts
-```
-
-This organization allows teams to quickly locate tests and maintain coverage as the application grows.
+These tests can be added as the automation framework expands and additional application coverage is required.
 
 ---
 
@@ -245,91 +216,6 @@ test-data/
 - Easier maintenance
 - Reusable data
 - Supports multiple environments
-
----
-
-# CI/CD Integration Strategy
-
-The automation suite should run automatically through CI/CD pipelines.
-
-## Recommended Workflow
-
----
-
-## Pull Request Validation
-
-### Run:
-
-- Smoke tests
-- Critical authentication tests
-- Critical campaign workflows
-
-### Purpose:
-
-- Catch breaking changes before merging
-
----
-
-## Nightly Regression
-
-### Run:
-
-- Full automated regression suite
-- Extended validation tests
-- Edge cases
-
-### Purpose:
-
-- Detect issues introduced during development
-
----
-
-## Release Validation
-
-Before deployment:
-
-- Execute full regression suite
-- Generate test reports
-- Block deployment on critical failures
-
----
-
-# Example CI/CD Pipeline
-
-```text
-Developer creates pull request
-            |
-            |
-       CI Pipeline Starts
-            |
-            |
-    Install Dependencies
-            |
-            |
-     Run Automated Tests
-            |
-            |
-     Generate Test Report
-            |
-            |
-   Pass -> Merge Allowed
-   Fail -> Investigation Required
-```
-
----
-
-# Future Automation Improvements
-
-Additional automation that could be added:
-
-- API test coverage
-- Accessibility testing
-- Visual regression testing
-- Cross-browser testing
-- Mobile viewport testing
-- Performance monitoring
-- Security-focused automation
-- Increased negative test coverage
 
 ---
 

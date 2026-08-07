@@ -36,7 +36,7 @@
 | CAMP-007 | Verify Multiple Campaigns Are Displayed | P1 | Functional | UI | Future |
 | CAMP-008 | Verify Campaign Data Displays Expected Values | P1 | Validation | UI | Future |
 | CAMP-009 | Verify Empty Campaign State Is Handled Correctly | P1 | Functional | UI | Future |
-| CAMP-010 | Verify Campaign Page Requires Authentication | P0 | Security | UI/API | Yes |
+| CAMP-010 | Verify Campaign Page Requires Authentication | P0 | Security | UI/API | Future |
 | CAMP-011 | Verify Campaign Page Remains Accessible After Refresh | P2 | Functional | UI | Future |
 | CAMP-012 | Verify Create Campaign Page Displays Required Elements | P0 | Functional | UI | Yes |
 | CAMP-013 | Verify Create Campaign Form Displays All Available Fields | P0 | Functional | UI | Yes |
@@ -66,7 +66,7 @@
 | CAMP-037 | Verify Required Fields Are Validated During Campaign Update | P0 | Validation | UI | Future |
 | CAMP-038 | Verify Multi-Select Fields Retain Multiple Values | P1 | Functional | UI | Future |
 | CAMP-039 | Verify Campaign Update Persists After Refresh | P1 | Regression | UI/API | Future |
-| CAMP-040 | Verify Campaign List Loads After Login | P0 | Functional | UI | Yes |
+| CAMP-040 | Verify Campaign List Loads After Login | P0 | Functional | UI | Future |
 | CAMP-041 | Verify Campaign List Displays At Least One Campaign | P1 | Functional | UI | Future |
 | CAMP-042 | Verify Campaign Name Is Required | P1 | Validation | UI | Future |
 | CAMP-043 | Verify Budget Is Required | P1 | Validation | UI | Future |

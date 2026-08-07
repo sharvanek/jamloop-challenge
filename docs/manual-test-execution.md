@@ -17,7 +17,7 @@ Testing covered:
 
 The complete test scenarios are documented in:
 
-`test-inventory.md`
+`test-cases.md`
 
 ---
 
