@@ -3,6 +3,9 @@ import { test } from '@playwright/test';
 import { CreateCampaignPage } from '../../pages/CreateCampaignPage';
 import { CampaignsPage } from '../../pages/CampaignsPage';
 
+import { generateCampaignData } from '../../utils/campaignData';
+import { formatCampaignGridDate } from '../../utils/dateUtils';
+
 /**
  * Campaign Creation Test Suite
  *
@@ -16,6 +19,7 @@ import { CampaignsPage } from '../../pages/CampaignsPage';
  * - Post-creation navigation
  */
 test.describe('Create Campaign', () => {
+
   /**
    * CAMP-012
    *
@@ -104,23 +108,18 @@ test.describe('Create Campaign', () => {
    * CAMP-014
    *
    * Verify a user can successfully create a campaign
-   * using valid campaign data.
+   * using valid dynamically generated campaign data.
    */
   test(
     'CAMP-014: Verify User Can Create Campaign With Valid Data',
     async ({ page }) => {
       const createCampaign = new CreateCampaignPage(page);
 
+      const campaignData = generateCampaignData();
+
       await createCampaign.open();
 
-      await createCampaign.createCampaign({
-        name: 'Automation Test Campaign',
-        budget: '5000',
-        country: 'United States',
-        state: 'Colorado',
-        city: 'Denver',
-        zipCode: '80202',
-      });
+      await createCampaign.createCampaign(campaignData);
 
       // User should return to campaign list after creation
       await createCampaign.expectUrl(
@@ -142,23 +141,34 @@ test.describe('Create Campaign', () => {
 
       await createCampaign.open();
 
-      // Attempt submission without required fields
+      // Attempt submission without required user input
+      //
+      // Start Date and End Date are excluded because
+      // the application provides default values.
+      //
+      // Gender is excluded because
+      // the application defaults this field.
       await createCampaign.click(
         createCampaign.createButton
       );
 
-      // Verify validation messages
-      await createCampaign.expectVisible(
-        page.getByText('Publishers is required.')
-      );
+      const requiredMessages = [
+        'Name is required.',
+        'Budget is required.',
+        'Publishers is required.',
+        'Devices is required.',
+        'Ages is required.',
+        'Country is required.',
+        'State is required.',
+        'City is required.',
+        'Zip Code is required.',
+      ];
 
-      await createCampaign.expectVisible(
-        page.getByText('Devices is required.')
-      );
-
-      await createCampaign.expectVisible(
-        page.getByText('Ages is required.')
-      );
+      for (const message of requiredMessages) {
+        await createCampaign.expectVisible(
+          page.getByText(message)
+        );
+      }
     }
   );
 
@@ -177,32 +187,37 @@ test.describe('Create Campaign', () => {
   test(
     'CAMP-023: Verify Newly Created Campaign Appears In Campaign List',
     async ({ page }) => {
-      const campaignName = 'Grid Verification Campaign';
-
       const createCampaign = new CreateCampaignPage(page);
+
+      const campaignData = generateCampaignData();
 
       await createCampaign.open();
 
-      await createCampaign.createCampaign({
-        name: campaignName,
-        budget: '5000',
-        country: 'United States',
-        state: 'Colorado',
-        city: 'Denver',
-        zipCode: '80202',
-      });
+      await createCampaign.createCampaign(campaignData);
 
       const campaigns = new CampaignsPage(page);
 
       await campaigns.verifyLoaded();
 
-      // Verify created campaign appears in visible grid row
+      // Verify created campaign appears in visible grid row.
+      //
+      // Date picker values use MM/DD/YYYY.
+      // Campaign Grid displays YYYY-MM-DD.
       await campaigns.verifyCampaignRow({
-        name: campaignName,
-        startDate: '2026-08-06',
-        endDate: '2026-08-07',
-        country: 'United States',
+        name: campaignData.name,
+
+        startDate: formatCampaignGridDate(
+          campaignData.startDate
+        ),
+
+        endDate: formatCampaignGridDate(
+          campaignData.endDate
+        ),
+
+        country: campaignData.country,
+
         publishers: 'Hulu',
+
         devices: 'Web Browser',
       });
     }
@@ -219,16 +234,11 @@ test.describe('Create Campaign', () => {
     async ({ page }) => {
       const createCampaign = new CreateCampaignPage(page);
 
+      const campaignData = generateCampaignData();
+
       await createCampaign.open();
 
-      await createCampaign.createCampaign({
-        name: 'Return Test Campaign',
-        budget: '1000',
-        country: 'United States',
-        state: 'Colorado',
-        city: 'Denver',
-        zipCode: '80202',
-      });
+      await createCampaign.createCampaign(campaignData);
 
       const campaigns = new CampaignsPage(page);
 
@@ -236,4 +246,5 @@ test.describe('Create Campaign', () => {
       await campaigns.verifyLoaded();
     }
   );
+
 });

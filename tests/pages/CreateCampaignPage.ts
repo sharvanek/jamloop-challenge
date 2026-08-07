@@ -6,6 +6,7 @@ import { BasePage } from './BasePage';
  * Page Object Model for the Create Campaign page.
  *
  * Handles:
+ *
  * - Navigating to campaign creation
  * - Validating page load
  * - Filling campaign details
@@ -46,6 +47,10 @@ export class CreateCampaignPage extends BasePage {
     this.budgetField = page.getByLabel('Budget');
 
     // Campaign scheduling fields
+    //
+    // These are Material UI date pickers.
+    // The underlying element is a text input,
+    // allowing Playwright to fill dynamic dates.
     this.startDateField = page.getByLabel('Start Date');
     this.endDateField = page.getByLabel('End Date');
 
@@ -78,6 +83,7 @@ export class CreateCampaignPage extends BasePage {
    * Confirms the Create Campaign page loaded.
    *
    * CAMP-001 validations:
+   *
    * - Correct URL
    * - Create Campaign heading visible
    * - Campaign Details section visible
@@ -111,6 +117,7 @@ export class CreateCampaignPage extends BasePage {
    * Selects an option from a Material UI dropdown.
    *
    * Used for:
+   *
    * - Publishers
    * - Devices
    * - Gender
@@ -126,21 +133,26 @@ export class CreateCampaignPage extends BasePage {
       })
       .click();
 
+    // Prevent dropdown overlays from blocking future actions
     await this.page.keyboard.press('Escape');
   }
 
   /**
-   * Creates a campaign using valid test data.
+   * Creates a campaign using supplied test data.
    *
    * Required flow:
+   *
    * 1. Enter campaign information
-   * 2. Select audience targeting options
-   * 3. Enter geography
-   * 4. Submit campaign
+   * 2. Enter campaign dates
+   * 3. Select audience targeting options
+   * 4. Enter geography
+   * 5. Submit campaign
    */
   async createCampaign(data: {
     name: string;
     budget: string;
+    startDate: string;
+    endDate: string;
     country: string;
     state: string;
     city: string;
@@ -150,6 +162,14 @@ export class CreateCampaignPage extends BasePage {
     await this.nameField.fill(data.name);
 
     await this.budgetField.fill(data.budget);
+
+    // Campaign scheduling
+    //
+    // Dates are generated dynamically by test data utilities
+    // and entered into the Material UI date picker inputs.
+    await this.startDateField.fill(data.startDate);
+
+    await this.endDateField.fill(data.endDate);
 
     // Campaign audience targeting
     await this.selectOption(
