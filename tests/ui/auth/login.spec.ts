@@ -10,6 +10,7 @@ import { users } from '../../data/users';
  * Authentication Test Suite
  *
  * Covers:
+ *
  * - Login page validation
  * - Successful authentication
  * - Failed authentication
@@ -18,7 +19,6 @@ import { users } from '../../data/users';
  * - Logout behavior
  */
 test.describe('Authentication', () => {
-
   /**
    * AUTH-001
    *
@@ -28,13 +28,11 @@ test.describe('Authentication', () => {
   test(
     'AUTH-001: Verify Login Page Displays Required Elements',
     async ({ page }) => {
-
       const login = new LoginPage(page);
 
       await login.open();
 
       await login.verifyLoaded();
-
     }
   );
 
@@ -47,7 +45,6 @@ test.describe('Authentication', () => {
   test(
     'AUTH-002: Verify User Can Login With Valid Credentials',
     async ({ page }) => {
-
       const landing = new LandingPage(page);
       const login = new LoginPage(page);
       const campaigns = new CampaignsPage(page);
@@ -59,13 +56,10 @@ test.describe('Authentication', () => {
       await landing.goToLogin();
 
       // Authenticate using valid credentials
-      await login.login(
-        users.validUser
-      );
+      await login.login(users.validUser);
 
       // Verify authenticated landing page
       await campaigns.verifyLoaded();
-
     }
   );
 
@@ -78,19 +72,15 @@ test.describe('Authentication', () => {
   test(
     'AUTH-003: Verify User Cannot Login With Invalid Credentials',
     async ({ page }) => {
-
       const login = new LoginPage(page);
 
       await login.open();
 
       // Attempt authentication using invalid credentials
-      await login.login(
-        users.invalidUser
-      );
+      await login.login(users.invalidUser);
 
       // Verify authentication failure
       await login.verifyLoginError();
-
     }
   );
 
@@ -103,19 +93,15 @@ test.describe('Authentication', () => {
   test(
     'AUTH-009: Verify Authenticated User Is Redirected After Login',
     async ({ page }) => {
-
       const login = new LoginPage(page);
 
       await login.open();
 
       // Authenticate using valid credentials
-      await login.login(
-        users.validUser
-      );
+      await login.login(users.validUser);
 
       // Verify authenticated redirect
       await login.verifyLoggedIn();
-
     }
   );
 
@@ -128,17 +114,11 @@ test.describe('Authentication', () => {
   test(
     'AUTH-010: Verify Unauthenticated Users Cannot Access Protected Pages',
     async ({ page }) => {
-
       // Attempt direct access to a protected route
-      await page.goto(
-        '/customer/campaigns'
-      );
+      await page.goto('/customer/campaigns');
 
       // Verify authentication is required
-      await page.waitForURL(
-        '**/login'
-      );
-
+      await page.waitForURL('**/login');
     }
   );
 
@@ -151,16 +131,13 @@ test.describe('Authentication', () => {
   test(
     'AUTH-011: Verify User Can Logout Successfully',
     async ({ page }) => {
-
       const login = new LoginPage(page);
       const campaigns = new CampaignsPage(page);
 
       // Authenticate user
       await login.open();
 
-      await login.login(
-        users.validUser
-      );
+      await login.login(users.validUser);
 
       await campaigns.verifyLoaded();
 
@@ -169,8 +146,6 @@ test.describe('Authentication', () => {
 
       // Verify user returned to public application
       await campaigns.verifyLoggedOut();
-
     }
   );
-
 });

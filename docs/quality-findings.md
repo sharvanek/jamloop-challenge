@@ -575,3 +575,24 @@ Low
 
 **Notes**
 Authentication protection is functioning correctly. However, performing authentication checks before initiating navigation to protected routes would simplify automated validation and create a cleaner routing flow.
+
+---
+
+## Finding-020: Login Requests Should Be Verified Over Secure Transport
+
+**Category:** Security Consideration
+
+**Description**
+The login request submits user credentials as part of the request payload. In the local development environment, credentials are visible in browser developer tools because the application is running over HTTP.
+
+**Expected Behavior**
+Authentication credentials should only be transmitted over HTTPS in deployed environments to prevent interception during network communication.
+
+**Actual Behavior**
+The local environment uses HTTP, causing request payload values to be visible within browser developer tools.
+
+**Severity**
+Informational
+
+**Notes**
+This behavior is expected during local development. Production environments should enforce HTTPS and ensure credentials are never transmitted over unencrypted connections.
