@@ -3,17 +3,16 @@ import { test } from '@playwright/test';
 import { LandingPage } from '../../pages/LandingPage';
 
 
-
 /**
  * Landing Page Test Suite
  *
  * Covers:
+ *
  * - Landing page availability
  * - Login navigation
- * - Create Campaign navigation
+ * - Campaign creation authentication requirements
  */
 test.describe('Landing Page', () => {
-
 
 
   /**
@@ -22,13 +21,11 @@ test.describe('Landing Page', () => {
    * Verify the landing page loads successfully
    * and required elements are displayed.
    */
-  test('LAND-001: Verify Landing Page Loads',
+  test('LAND-001: Verify Landing Page Loads With Required Branding and Content',
     async ({ page }) => {
-
 
       const landing =
         new LandingPage(page);
-
 
       await landing.open();
 
@@ -37,28 +34,22 @@ test.describe('Landing Page', () => {
     });
 
 
-
-
   /**
    * LAND-002
    *
    * Verify users can navigate from the landing page
    * to the login page.
    */
-  test('LAND-002: Verify Sign In Navigation',
+  test('LAND-002: Verify User Can Navigate To Login From Landing Page',
     async ({ page }) => {
-
 
       const landing =
         new LandingPage(page);
 
-
       await landing.open();
-
 
       // Navigate to authentication workflow
       await landing.goToLogin();
-
 
       // Verify login page loaded
       await landing.verifyRedirectedToLogin();
@@ -66,33 +57,26 @@ test.describe('Landing Page', () => {
     });
 
 
-
-
   /**
    * LAND-003
    *
-   * Verify users can start the campaign creation workflow
-   * from the landing page.
+   * Verify unauthenticated users are redirected
+   * to login when starting campaign creation.
    */
-  test('LAND-003: Verify Create Campaign Navigation',
+  test('LAND-003: Verify Unauthenticated User Is Redirected To Login When Starting Campaign Creation',
     async ({ page }) => {
-
 
       const landing =
         new LandingPage(page);
 
-
       await landing.open();
-
 
       // Start campaign creation workflow
       await landing.clickCreateCampaign();
 
-
-      // Verify user is redirected to campaigns page
-      await landing.verifyRedirectedToCampaigns();
+      // Verify authentication is required
+      await landing.verifyRedirectedToLogin();
 
     });
-
 
 });

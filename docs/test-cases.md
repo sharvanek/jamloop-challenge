@@ -7,7 +7,7 @@
 | LAND-001 | Verify Landing Page Loads With Required Branding and Content | P0 | Functional | UI | Yes |
 | LAND-002 | Verify User Can Navigate To Login Page | P0 | Functional | UI | Yes |
 | LAND-003 | Verify Unauthenticated User Is Redirected To Login When Creating A Campaign | P0 | Functional | UI | Yes |
-| LAND-004 | Verify Authenticated User Can Access Campaign Creation | P1 | Functional | UI | Yes |
+| LAND-004 | Verify Authenticated User Can Access Campaign Creation | P1 | Functional | UI | Future |
 | AUTH-001 | Verify Login Page Displays Required Elements | P0 | Functional | UI | Yes |
 | AUTH-002 | Verify User Can Login With Valid Credentials | P0 | Functional | UI/API | Yes |
 | AUTH-003 | Verify User Cannot Login With Invalid Credentials | P0 | Negative | UI/API | Yes |

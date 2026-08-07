@@ -544,3 +544,34 @@ Low
 
 **Notes**
 This behavior is commonly caused by browser-specific autofill styling. Applying custom autofill styles could provide a more consistent user experience across supported browsers.
+
+---
+
+## Finding-019: Authentication Redirect Occurs After Initial Protected Route Attempt
+
+**Category:** Testability Challenge / Authentication Flow
+
+**Description**
+When an unauthenticated user attempts to start campaign creation from the landing page, the application initially attempts to navigate to the campaigns route before redirecting the user to the login page.
+
+Although access is ultimately restricted correctly, the intermediate route transition creates additional complexity when validating navigation behavior through automation.
+
+**Steps to Reproduce**
+1. Navigate to the application landing page.
+2. Ensure the user is not authenticated.
+3. Click the "Create a campaign" button.
+4. Observe the resulting navigation behavior.
+
+**Expected Behavior**
+- The application should validate authentication before navigating to protected campaign routes.
+- Unauthenticated users should be redirected directly to the login page.
+
+**Actual Behavior**
+- The application attempts navigation to the campaigns route.
+- The user is then redirected to the login page.
+
+**Severity**
+Low
+
+**Notes**
+Authentication protection is functioning correctly. However, performing authentication checks before initiating navigation to protected routes would simplify automated validation and create a cleaner routing flow.

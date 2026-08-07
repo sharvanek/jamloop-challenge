@@ -56,10 +56,9 @@ The initial automation effort focuses on P0 workflows and selected high-value P1
 
 ### Automated Coverage
 
-- Verify landing page loads successfully
-- Verify required branding and content is displayed
-- Verify navigation to login page
-- Verify campaign creation redirects correctly based on authentication state
+- Verify landing page loads successfully with required branding and content
+- Verify users can navigate to the login page
+- Verify unauthenticated users are redirected to the login page when starting campaign creation
 
 ### Reason For Selection
 
@@ -74,11 +73,9 @@ The landing page is the primary entry point into the application. Failures here 
 - Verify login page displays required elements
 - Verify successful login with valid credentials
 - Verify login fails with invalid credentials
-- Verify required field validation
-- Verify authenticated users are redirected correctly
+- Verify authenticated users are redirected after login
 - Verify unauthenticated users cannot access protected pages
-- Verify logout functionality
-- Verify session persistence after refresh
+- Verify users can successfully log out
 
 ### Reason For Selection
 
