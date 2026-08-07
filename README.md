@@ -12,7 +12,7 @@ The automation framework validates critical user workflows including:
 - Campaign creation workflow
 - Campaign validation and verification
 
-The tests are built using:
+The framework was built using:
 
 - Playwright
 - TypeScript
@@ -28,7 +28,7 @@ The tests are built using:
 Before running the automated tests, ensure the following tools are installed:
 
 - Node.js
-- pnpm
+- pnpm 9.15.4
 - Git
 
 ---
@@ -47,23 +47,23 @@ Verify the installation:
 node --version
 ```
 
-Expected output:
-
-```text
-vXX.X.X
-```
-
 ---
 
 ## Install pnpm
 
-Install pnpm globally:
+This project uses:
 
-```bash
-npm install -g pnpm
+```text
+pnpm 9.15.4
 ```
 
-Verify installation:
+Install the required pnpm version:
+
+```bash
+npm install -g pnpm@9.15.4
+```
+
+Verify the installation:
 
 ```bash
 pnpm --version
@@ -72,14 +72,14 @@ pnpm --version
 Expected output:
 
 ```text
-X.X.X
+9.15.4
 ```
 
 ---
 
 # 2. Clone the Repository
 
-Clone the challenge repository:
+Clone the repository:
 
 ```bash
 git clone <repository-url>
@@ -111,7 +111,7 @@ This installs:
 
 # 4. Start the Application
 
-The automation tests require the application to be running locally.
+The application must be running before executing the automated tests.
 
 Start the development server:
 
@@ -119,7 +119,7 @@ Start the development server:
 pnpm dev
 ```
 
-The application will start at:
+The application will be available at:
 
 ```text
 http://localhost:3000
@@ -141,9 +141,9 @@ pnpm exec playwright install
 
 # Running Automated Tests
 
-## Run All Playwright Tests
+## Run All Tests
 
-Execute the full automated test suite:
+Execute the complete Playwright test suite:
 
 ```bash
 pnpm exec playwright test
@@ -151,33 +151,37 @@ pnpm exec playwright test
 
 ---
 
-## Run Tests With Browser Visible
+## Run Tests in Headed Mode
 
-Run tests in headed mode:
+Run tests with the browser visible:
 
 ```bash
 pnpm exec playwright test --headed
 ```
 
-This allows you to watch the browser execute the workflow.
-
 ---
 
 ## Run a Specific Test File
 
-Example:
+Authentication tests:
 
 ```bash
 pnpm exec playwright test tests/ui/auth/login.spec.ts
 ```
 
-Example:
+Landing page tests:
+
+```bash
+pnpm exec playwright test tests/ui/landing/landing.spec.ts
+```
+
+Campaign list tests:
 
 ```bash
 pnpm exec playwright test tests/ui/campaigns/campaign-list.spec.ts
 ```
 
-Example:
+Campaign creation tests:
 
 ```bash
 pnpm exec playwright test tests/ui/campaigns/campaign-create.spec.ts
@@ -185,9 +189,9 @@ pnpm exec playwright test tests/ui/campaigns/campaign-create.spec.ts
 
 ---
 
-## View Playwright Test Report
+## View Test Report
 
-After execution, open the HTML report:
+After running tests, open the Playwright HTML report:
 
 ```bash
 pnpm exec playwright show-report
@@ -195,9 +199,9 @@ pnpm exec playwright show-report
 
 ---
 
-# Test Organization
+# Test Framework Structure
 
-The test framework follows the Page Object Model pattern.
+The automation framework follows the Page Object Model pattern.
 
 ```
 tests/
@@ -231,7 +235,9 @@ tests/
 
 # Automated Workflows Selected
 
-The automated workflows were selected based on business criticality and user impact.
+The automated workflows were selected based on business importance, user impact, and regression risk.
+
+---
 
 ## Authentication
 
@@ -243,9 +249,24 @@ Automated scenarios include:
 - Protected route validation
 - Logout functionality
 
-Reason:
+### Reason Selected
 
-Authentication is a core application workflow and impacts access to all protected functionality.
+Authentication is a foundational workflow because all protected application functionality depends on successful user access.
+
+---
+
+## Landing Page
+
+Automated scenarios include:
+
+- Landing page loads successfully
+- Required branding and content are displayed
+- Sign in navigation works
+- Create campaign navigation works
+
+### Reason Selected
+
+The landing page represents the initial user entry point and validates that users can successfully begin important workflows.
 
 ---
 
@@ -253,60 +274,67 @@ Authentication is a core application workflow and impacts access to all protecte
 
 Automated scenarios include:
 
-- Viewing campaigns
+- Viewing existing campaigns
 - Accessing campaign creation
 - Creating a campaign
-- Validating required fields
-- Confirming newly created campaigns appear in the campaign list
+- Required field validation
+- Verifying newly created campaigns appear in the campaign list
 
-Reason:
+### Reason Selected
 
-Campaign creation represents a primary business workflow and contains multiple validation points.
+Campaign creation is a primary business workflow and contains multiple user interactions and validation points.
 
 ---
 
 # Additional Tests With More Time
 
-Additional coverage that could be added:
-
-## Campaign Management
-
-- Edit existing campaign
-- Delete campaign
-- Duplicate campaign
-- Search campaigns
-- Filter campaigns
-- Sort campaigns
-- Pagination validation
-
----
-
-## Form Validation
-
-Additional negative scenarios:
-
-- Invalid budget values
-- Invalid date ranges
-- Missing campaign name
-- Missing geographic fields
-- Duplicate campaign names
-
----
+Additional automation coverage could include:
 
 ## Authentication
 
-Additional scenarios:
-
-- Session expiration handling
-- Password reset workflow
-- Remember me functionality
-- Multiple failed login attempts
+- Verify authenticated users remain logged in after page refresh
+- Verify session expiration redirects users to login
+- Verify multiple failed login attempts are handled correctly
+- Verify users cannot access restricted functionality without proper permissions
+- Verify password reset workflow (if implemented)
 
 ---
 
-## Cross-Browser Testing
+## Landing Page
 
-Run automated tests against:
+- Verify all landing page navigation links work correctly
+- Verify landing page content remains consistent after refresh
+- Verify responsive behavior across supported screen sizes
+- Verify external links navigate correctly (if applicable)
+
+---
+
+## Campaign List
+
+- Verify campaign data remains correct after page refresh
+- Verify campaign data persists after logout and login
+- Verify campaign rows display all expected fields
+- Verify empty campaign states are handled correctly
+- Verify campaign list behavior with multiple campaigns
+
+---
+
+## Campaign Creation
+
+- Verify campaign creation with different targeting combinations
+- Verify campaign creation with boundary values
+- Verify maximum field length validation
+- Verify invalid budget values
+- Verify invalid date ranges
+- Verify missing required fields
+- Verify invalid geographic information
+- Verify campaign creation error handling
+
+---
+
+## Browser Coverage
+
+Execute tests across:
 
 - Chromium
 - Firefox
@@ -316,7 +344,7 @@ Run automated tests against:
 
 # Scaling the Test Suite
 
-If the test suite grew to hundreds of tests, it would be organized by:
+If the automation suite grew to hundreds of tests, the structure would be organized by:
 
 ## Feature Area
 
@@ -328,7 +356,6 @@ tests/
 ├── authentication/
 ├── campaigns/
 ├── users/
-├── billing/
 └── reporting/
 ```
 
@@ -351,32 +378,32 @@ tests/
 
 ## Shared Components
 
-Reusable functionality would remain separated:
+Reusable components would remain separated:
 
 ```
 pages/
 fixtures/
 utils/
-data/
 helpers/
+data/
 ```
 
 ---
 
 ## Test Metadata
 
-Tests would include:
+Tests would include metadata such as:
 
 - Priority
 - Feature ownership
 - Regression category
-- Smoke vs full regression classification
+- Smoke vs regression classification
 
 Example:
 
 ```typescript
 test.describe('Campaign Creation - Critical', () => {
-  
+
 });
 ```
 
@@ -384,59 +411,74 @@ test.describe('Campaign Creation - Critical', () => {
 
 # CI/CD Integration
 
-The Playwright test suite would be integrated into the CI/CD pipeline.
-
-Recommended workflow:
-
-1. Developer opens pull request
-2. CI pipeline starts
-3. Application dependencies are installed
-4. Application is started
-5. Playwright tests execute
-6. Test results and reports are generated
-7. Pull request is approved only if tests pass
+The Playwright test suite would be integrated into the CI/CD pipeline to provide automated validation before changes are merged.
 
 ---
 
-## Example CI Pipeline Flow
+## Recommended Pipeline Flow
 
 ```
-Pull Request
-      |
-      v
+Developer Creates Pull Request
+            |
+            v
 Install Dependencies
-      |
-      v
+            |
+            v
 Start Application
-      |
-      v
-Run Playwright Tests
-      |
-      v
-Generate Report
-      |
-      v
+            |
+            v
+Execute Playwright Tests
+            |
+            v
+Generate Test Report
+            |
+            v
 Publish Results
 ```
 
 ---
 
-## CI Recommendations
-
-The pipeline should include:
+## CI Pipeline Should Include
 
 - Automated Playwright execution
 - HTML test reports
 - Screenshot capture on failures
-- Video recording for failed tests
-- Parallel test execution
-- Environment-specific configuration
+- Video capture for failed tests
+- Trace collection for debugging
+- Parallel execution
+- Environment configuration
+
+---
+
+# Test Reporting Strategy
+
+The current framework uses Playwright's built-in HTML reporting.
+
+The generated reports provide:
+
+- Test execution results
+- Failed test details
+- Screenshots for failures
+- Video recordings for failures
+- Execution traces for debugging
+
+For a larger-scale automation suite, integrating **Allure Reporting** would improve visibility and maintainability.
+
+Potential benefits of Allure Reporting:
+
+- Historical test execution trends
+- Test categorization by feature or component
+- Step-level test reporting
+- Easier failure analysis
+- Better reporting for engineering teams and stakeholders
+
+A CI pipeline could publish Allure reports after each execution to provide visibility into automation health and regression trends.
 
 ---
 
 # Quality Findings
 
-Additional quality findings are documented here:
+Quality findings are documented separately:
 
 ```
 docs/quality-findings.md
@@ -444,9 +486,9 @@ docs/quality-findings.md
 
 ---
 
-# Supporting Documentation
+# Additional Documentation
 
-Additional testing documentation:
+Supporting documentation is available in:
 
 ```
 docs/
