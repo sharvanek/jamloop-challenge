@@ -3,203 +3,172 @@ import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 /**
- * Page Object Model for the Campaigns listing page.
+ * Page Object Model for the Campaigns page.
  *
  * Handles:
- *
- * - Navigating to campaigns
- * - Verifying campaign list UI
- * - Creating campaign navigation
- * - Logging out
- * - Validating campaign rows and grid data
+ * - Campaign page validation
+ * - Campaign table validation
+ * - Create campaign navigation
+ * - Logout workflow
  */
 export class CampaignsPage extends BasePage {
-  // Primary page elements used across campaign tests
+  readonly logo: Locator;
+  readonly heading: Locator;
+  readonly description: Locator;
+
   readonly createCampaignButton: Locator;
+  readonly logoutButton: Locator;
+
   readonly campaignsTable: Locator;
-  readonly tableRows: Locator;
+  readonly campaignRows: Locator;
 
   constructor(page: Page) {
     super(page);
 
-    // Button used to begin the create campaign workflow
-    this.createCampaignButton = page.getByRole('button', {
-      name: /create campaign/i,
+    // Branding
+    this.logo = page.getByAltText('JamLoop');
+
+    // Page content
+    this.heading = page.getByRole('heading', {
+      name: 'Campaigns',
     });
 
-    // Main campaign results table
-    this.campaignsTable = page.locator('table');
+    this.description = page.getByText(
+      'Welcome to your Advertising Campaign Dashboard!',
+      {
+        exact: false,
+      }
+    );
 
-    // Individual campaign rows displayed in the grid
-    this.tableRows = page.locator('table tbody tr');
+    // Actions
+    this.createCampaignButton = page.getByRole('button', {
+      name: 'Create Campaign',
+    });
+
+    this.logoutButton = page.getByRole('button', {
+      name: 'Log Out',
+    });
+
+    // Campaign grid
+    this.campaignsTable = page.getByRole('table', {
+      name: 'Campaigns Table',
+    });
+
+    this.campaignRows = page.locator(
+      'table tbody tr'
+    );
   }
 
   /**
-   * Navigates directly to the Campaigns page.
+   * Opens the campaigns page.
    */
   async open() {
     await this.goto('/customer/campaigns');
   }
 
   /**
-   * Confirms the Campaigns page loaded successfully.
+   * Verifies campaigns page loaded correctly.
    *
    * Validates:
-   *
-   * - Correct URL
-   * - Create Campaign action is available
+   * - URL
+   * - Branding
+   * - Page heading
+   * - Description
+   * - Create campaign button
+   * - Campaign table
    */
   async verifyLoaded() {
     await this.expectUrl('/customer/campaigns');
 
+    await expect(this.logo).toBeVisible();
+
+    await expect(this.heading).toBeVisible();
+
+    await expect(this.description).toBeVisible();
+
     await expect(
       this.createCampaignButton
     ).toBeVisible();
-  }
 
-  /**
-   * Verifies that campaigns are displayed in the grid.
-   *
-   * Used for validating that existing campaigns
-   * are available to the user.
-   */
-  async verifyCampaignsDisplayed() {
     await expect(
-      this.tableRows.first()
+      this.campaignsTable
     ).toBeVisible();
   }
 
   /**
-   * Opens the Create Campaign workflow.
+   * Verifies campaigns exist in the table.
+   */
+  async verifyCampaignsDisplayed() {
+    await expect(
+      this.campaignRows.first()
+    ).toBeVisible();
+  }
+
+  /**
+   * Opens Create Campaign workflow.
    */
   async clickCreateCampaign() {
     await this.createCampaignButton.click();
   }
 
   /**
-   * Logs the current user out.
-   *
-   * Handles different possible implementations:
-   *
-   * - Button
-   * - Link
-   * - Text element
-   *
-   * This makes the Page Object resilient to UI changes.
+   * Logs out the current user.
    */
   async logout() {
-    const logoutButton = this.page.getByRole('button', {
-      name: /log out/i,
-    });
-
-    if (await logoutButton.isVisible()) {
-      await logoutButton.click();
-      return;
-    }
-
-    const logoutLink = this.page.getByRole('link', {
-      name: /log out/i,
-    });
-
-    if (await logoutLink.isVisible()) {
-      await logoutLink.click();
-      return;
-    }
-
-    // Final fallback if logout is rendered as plain text
-    await this.page
-      .getByText('LOG OUT', {
-        exact: false,
-      })
-      .click();
+    await this.logoutButton.click();
   }
 
   /**
-   * Confirms logout completed successfully.
-   *
-   * Application redirects users to the root page
-   * after logout.
+   * Verifies logout redirected user
+   * back to landing page.
    */
   async verifyLoggedOut() {
-    await expect(this.page).toHaveURL('/');
+    await this.expectUrl('/');
   }
 
   /**
-   * Verifies a campaign exists in the campaign grid.
-   *
-   * Used by CAMP-023:
-   * Verify Newly Created Campaign Appears In Campaign List
+   * Finds a campaign row by name.
    */
-  async verifyCampaignExists(campaignName: string) {
+  getCampaignRow(campaignName: string) {
+    return this.campaignRows.filter({
+      hasText: campaignName,
+    });
+  }
+
+  /**
+   * Verifies campaign exists in table.
+   */
+  async verifyCampaignExists(
+    campaignName: string
+  ) {
     await expect(
-      this.tableRows
-        .filter({
-          hasText: campaignName,
-        })
-        .first()
+      this.getCampaignRow(campaignName)
     ).toBeVisible();
   }
 
   /**
-   * Returns a specific campaign row by campaign name.
-   *
-   * Centralizes row lookup logic so tests
-   * do not directly interact with table selectors.
-   */
-  getCampaignRow(campaignName: string) {
-    return this.tableRows
-      .filter({
-        hasText: campaignName,
-      })
-      .first();
-  }
-
-  /**
-   * Validates visible fields inside a campaign grid row.
-   *
-   * Example:
-   *
-   * - Campaign name
-   * - Budget
-   * - Geography
-   * - Other displayed columns
-   */
-  async verifyCampaignGridFields(
-    campaignName: string,
-    fields: string[]
-  ) {
-    const row = this.getCampaignRow(campaignName);
-
-    for (const field of fields) {
-      await expect(row).toContainText(field);
-    }
-  }
-
-  /**
-   * Validates a campaign row against expected values.
-   *
-   * Used after campaign creation to confirm
-   * the created campaign appears correctly.
+   * Verifies campaign row contains values.
    */
   async verifyCampaignRow(data: {
     name: string;
-    budget?: string;
+    startDate?: string;
+    endDate?: string;
     country?: string;
-    state?: string;
-    city?: string;
-    zipCode?: string;
+    publisher?: string;
+    device?: string;
   }) {
-    const row = this.getCampaignRow(data.name);
+    const row = this.getCampaignRow(
+      data.name
+    );
 
     await expect(row).toBeVisible();
 
-    // Validate only fields provided by the test
     for (const value of [
-      data.budget,
+      data.startDate,
+      data.endDate,
       data.country,
-      data.state,
-      data.city,
-      data.zipCode,
+      data.publisher,
+      data.device,
     ]) {
       if (value) {
         await expect(row).toContainText(value);
@@ -208,26 +177,26 @@ export class CampaignsPage extends BasePage {
   }
 
   /**
-   * Opens a campaign from the grid.
-   *
-   * Used for future edit campaign tests:
-   * CAMP-033+
+   * Opens a campaign from the table.
    */
-  async clickCampaign(campaignName: string) {
-    const row = this.getCampaignRow(campaignName);
-
-    await row.click();
+  async clickCampaign(
+    campaignName: string
+  ) {
+    await this.getCampaignRow(
+      campaignName
+    )
+      .getByRole('link')
+      .click();
   }
 
   /**
-   * Returns all visible text from a campaign row.
-   *
-   * Useful for debugging failures or validating
-   * additional grid fields.
+   * Gets all text from a campaign row.
    */
-  async getRowText(campaignName: string) {
-    const row = this.getCampaignRow(campaignName);
-
-    return row.innerText();
+  async getRowText(
+    campaignName: string
+  ) {
+    return this.getCampaignRow(
+      campaignName
+    ).innerText();
   }
 }

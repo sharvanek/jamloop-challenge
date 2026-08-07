@@ -6,7 +6,6 @@ import { BasePage } from './BasePage';
  * Page Object Model for the Create Campaign page.
  *
  * Handles:
- *
  * - Navigating to campaign creation
  * - Validating page load
  * - Filling campaign details
@@ -78,28 +77,40 @@ export class CreateCampaignPage extends BasePage {
   /**
    * Confirms the Create Campaign page loaded.
    *
-   * Validates:
-   *
+   * CAMP-001 validations:
    * - Correct URL
-   * - Create Campaign button is visible
+   * - Create Campaign heading visible
+   * - Campaign Details section visible
+   * - Name field visible
+   * - Create Campaign button visible
    */
   async verifyLoaded() {
-    await expect(this.page).toHaveURL(/campaigns\/create/);
+    await expect(this.page)
+      .toHaveURL(/campaigns\/create/);
 
-    await expect(this.createButton).toBeVisible();
+    await expect(
+      this.page.getByRole('heading', {
+        name: 'Create a new campaign',
+      })
+    ).toBeVisible();
+
+    await expect(
+      this.page.getByRole('heading', {
+        name: 'Campaign Details',
+      })
+    ).toBeVisible();
+
+    await expect(this.nameField)
+      .toBeVisible();
+
+    await expect(this.createButton)
+      .toBeVisible();
   }
 
   /**
    * Selects an option from a Material UI dropdown.
    *
-   * This helper handles:
-   *
-   * - Opening the dropdown
-   * - Selecting the requested option
-   * - Closing the menu
-   *
    * Used for:
-   *
    * - Publishers
    * - Devices
    * - Gender
@@ -115,7 +126,6 @@ export class CreateCampaignPage extends BasePage {
       })
       .click();
 
-    // Ensures dropdown overlays do not block future actions
     await this.page.keyboard.press('Escape');
   }
 
@@ -123,17 +133,10 @@ export class CreateCampaignPage extends BasePage {
    * Creates a campaign using valid test data.
    *
    * Required flow:
-   *
    * 1. Enter campaign information
    * 2. Select audience targeting options
    * 3. Enter geography
    * 4. Submit campaign
-   *
-   * Used by:
-   *
-   * - CAMP-014
-   * - CAMP-023
-   * - CAMP-032
    */
   async createCampaign(data: {
     name: string;
@@ -148,11 +151,7 @@ export class CreateCampaignPage extends BasePage {
 
     await this.budgetField.fill(data.budget);
 
-    // Campaign audience targeting.
-    //
-    // These values represent required
-    // dropdown selections needed for
-    // successful campaign creation.
+    // Campaign audience targeting
     await this.selectOption(
       this.publishersDropdown,
       'Hulu'
@@ -173,11 +172,7 @@ export class CreateCampaignPage extends BasePage {
       '20 yrs - 35 yrs'
     );
 
-    // Geographic targeting information.
-    //
-    // These values are passed from the
-    // test to allow different campaign
-    // scenarios in the future.
+    // Geographic targeting information
     await this.countryField.fill(data.country);
 
     await this.stateField.fill(data.state);

@@ -13,24 +13,28 @@ import { BasePage } from './BasePage';
  * - Password reset navigation
  */
 export class LoginPage extends BasePage {
+  readonly logo: Locator;
   readonly heading: Locator;
   readonly usernameField: Locator;
   readonly passwordField: Locator;
   readonly signInButton: Locator;
   readonly forgotPasswordLink: Locator;
+  readonly copyright: Locator;
   readonly errorMessage: Locator;
 
   constructor(page: Page) {
     super(page);
 
+    // JamLoop branding logo
+    this.logo = page.getByAltText('JamLoop');
+
     // Login page heading
     this.heading = page.getByRole('heading', {
-      name: 'Welcome back!',
+      name: 'Please sign in to continue',
     });
 
     // Authentication fields
     this.usernameField = page.getByLabel('Username');
-
     this.passwordField = page.getByLabel('Password');
 
     // Login submission button
@@ -44,6 +48,11 @@ export class LoginPage extends BasePage {
     this.forgotPasswordLink = page.getByRole('link', {
       name: 'I forgot my password',
     });
+
+    // Footer copyright
+    this.copyright = page.getByText(
+      'JamLoop LLC. All Rights Reserved.'
+    );
 
     // Authentication error message
     this.errorMessage = page.getByText(
@@ -64,14 +73,18 @@ export class LoginPage extends BasePage {
    * Validates:
    *
    * - Correct URL
-   * - Heading
+   * - JamLoop logo
+   * - Login heading
    * - Username field
    * - Password field
    * - Sign in button
    * - Forgot password link
+   * - Footer copyright
    */
   async verifyLoaded() {
     await this.expectUrl('/login');
+
+    await this.expectVisible(this.logo);
 
     await this.expectVisible(this.heading);
 
@@ -82,6 +95,8 @@ export class LoginPage extends BasePage {
     await this.expectVisible(this.signInButton);
 
     await this.expectVisible(this.forgotPasswordLink);
+
+    await this.expectVisible(this.copyright);
   }
 
   /**
@@ -154,7 +169,9 @@ export class LoginPage extends BasePage {
   async verifyUsernameRequired() {
     await this.clickSignIn();
 
-    await this.expectVisible(this.usernameField);
+    await this.expectVisible(
+      this.usernameField
+    );
   }
 
   /**
@@ -163,7 +180,9 @@ export class LoginPage extends BasePage {
   async verifyPasswordRequired() {
     await this.clickSignIn();
 
-    await this.expectVisible(this.passwordField);
+    await this.expectVisible(
+      this.passwordField
+    );
   }
 
   /**
