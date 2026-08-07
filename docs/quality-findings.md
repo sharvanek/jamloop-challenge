@@ -482,3 +482,65 @@ Low
 
 **Notes**
 Branding inconsistencies may reduce user confidence and create uncertainty about whether the application is an official JamLoop product. Aligning the application branding with the public website would provide a more consistent user experience.
+
+---
+
+## Finding-017: Additional Test Hooks Would Improve Automation Maintainability
+
+**Category:** Testability Challenge / Automation Maintainability
+
+**Description**
+The current automation framework uses user-facing selectors such as roles and labels to identify application elements. These selectors align well with how users interact with the application and are a recommended Playwright approach.
+
+As the application grows, adding dedicated automation hooks such as `data-testid` attributes for complex or frequently changing components would improve long-term test stability and reduce maintenance overhead.
+
+**Steps to Reproduce**
+1. Create automated tests using existing UI selectors.
+2. Modify UI text, component structure, or reusable component implementations.
+3. Re-run the automated test suite.
+4. Review whether selectors require updates.
+
+**Expected Behavior**
+- Application components should provide stable automation hooks for complex or dynamic elements.
+- Minor UI changes should have minimal impact on automated test stability.
+- Automation selectors should remain maintainable as the application scales.
+
+**Actual Behavior**
+- Some UI changes may require automation updates if elements cannot be reliably identified through existing accessible selectors.
+- Additional test attributes could improve selector stability for larger automation suites.
+
+**Severity**
+Low
+
+**Notes**
+The current use of accessible selectors provides good coverage for user-facing workflows. Adding dedicated test hooks would be a future improvement to support a larger automation suite with hundreds of tests and reduce maintenance effort over time.
+
+---
+
+## Finding-018: Browser Autofill Styling Reduces Campaign Form Field Clarity
+
+**Category:** Usability Issue / Accessibility Concern
+
+**Description**
+When browser autofill is used on the Campaign Create form, the autofill styling changes the appearance of populated fields. The highlighted background styling makes the form fields appear visually different from manually entered fields, which may create confusion when reviewing the form state.
+
+**Steps to Reproduce**
+1. Log into the application.
+2. Navigate to the Campaign Create page.
+3. Use browser autofill or saved browser information to populate one or more form fields.
+4. Observe the appearance of the populated fields.
+5. Compare autofilled fields with manually completed fields.
+
+**Expected Behavior**
+- Autofilled fields should maintain a consistent visual appearance with manually entered fields.
+- Field styling should clearly communicate the input state without distracting from the form experience.
+
+**Actual Behavior**
+- Autofilled fields display a different visual style due to browser autofill highlighting.
+- The altered field appearance creates a visual inconsistency within the campaign creation form.
+
+**Severity**
+Low
+
+**Notes**
+This behavior is commonly caused by browser-specific autofill styling. Applying custom autofill styles could provide a more consistent user experience across supported browsers.
